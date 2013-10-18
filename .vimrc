@@ -9,12 +9,16 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " My Bundles here:
-Bundle 'dlip/vim-colemak'
-Bundle 'tpope/vim-vividchalk'
-Bundle 'tpope/vim-fugitive'
-Bundle 'kien/ctrlp.vim'
 Bundle '907th/vim-auto-save'
+Bundle 'dlip/vim-colemak'
+Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
+Bundle 'tpope/vim-vividchalk'
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-unimpaired'
+Bundle 'tpope/vim-fugitive'
+Bundle 'Valloric/MatchTagAlways'
+Bundle 'vim-ruby/vim-ruby'
 
 filetype plugin indent on " Enable filetype-specific indenting and plugins
 
@@ -57,9 +61,12 @@ colorscheme vividchalk
 let mapleader = "\<space>"
 let g:mapleader = "\<space>"
 
+nnoremap <silent> <leader>b :CtrlPBuffer<cr>| " Search buffers
 nnoremap <leader>e <C-W>j| " Move to split below
+nnoremap <silent> <leader>gs :Gstatus<cr>| " Git status
 nnoremap <leader>i <C-W>l| " Move to split right
 nnoremap <leader>l gT|     " Move to tab left
+nnoremap <silent> <leader>m :CtrlPMRUFiles<cr>| " Search most recent files
 nnoremap <leader>n <C-W>h| " Move to split left
 nnoremap <leader>u <C-W>k| " Move to split above
 nnoremap <silent> <leader>v :e! ~/.vimrc<cr>| " Fast editing of the .vimrc
@@ -81,6 +88,23 @@ vnoremap ; :
 
 " New colemak mappings
 nnoremap cc yy|  " Double c to yank line
+nnoremap <C-a> <C-v>| "Block selection to a key
+
+if has("unix")
+  if system('uname')=~'Darwin'
+    vnoremap <C-x> "*dd|" Cut into clipboard       
+    vnoremap <C-c> "*y| " Copy into clipboard 
+    nnoremap <C-v> "*p| " Paste from clipboard      
+  else
+    vnoremap <C-x> "+dd|" Cut into clipboard       
+    vnoremap <C-c> "+y| " Copy into clipboard 
+    nnoremap <C-v> "+p| " Paste from clipboard      
+  endif
+elseif has('win32')
+  vnoremap <C-x> "+dd|" Cut into clipboard       
+  vnoremap <C-c> "+y| " Copy into clipboard 
+  nnoremap <C-v> "+p| " Paste from clipboard      
+endif
 
 "NerdTree Options
 let g:NERDTreeQuitOnOpen = 1
@@ -89,6 +113,15 @@ let NERDTreeMapOpenExpl='' "Normally e
 let NERDTreeMapUpdir='' "Normally u
 let NERDTreeMapOpenSplit='' "Normally i
 let NERDTreeMapQuit='q'
+
+" MatchTagAlways Options
+let g:mta_filetypes = {
+    \ 'html' : 1,
+    \ 'xhtml' : 1,
+    \ 'xml' : 1,
+    \ 'jinja' : 1,
+    \ 'eruby' : 1,
+    \}
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
