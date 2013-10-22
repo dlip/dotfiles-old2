@@ -1,0 +1,21 @@
+# avoid pinkie
+escape ^Tt
+
+# skip the startup message
+startup_message off
+
+hardstatus alwayslastline "%{= KW}%-w%{= ck}%50>%n %t%{-}%+w%<%-22=%{w}%c [%l]"
+
+nonblock 5
+
+# detach the screen if we get disconnected
+autodetach on
+
+# Show messages at the bottom for only 0.5s
+msgwait 0.5
+
+# Clear title
+shelltitle ''
+
+# allow for 10,000 lines of scroll back (default 100)
+defscrollback 10000
