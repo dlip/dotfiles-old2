@@ -10,13 +10,19 @@ Bundle 'gmarik/vundle'
 
 " My Bundles here:
 Bundle '907th/vim-auto-save'
+Bundle 'altercation/vim-colors-solarized'
 Bundle 'dlip/vim-colemak'
+Bundle 'ecomba/vim-ruby-refactoring'
 Bundle 'kien/ctrlp.vim'
+Bundle 'mattn/emmet-vim'
 Bundle 'scrooloose/nerdtree'
-Bundle 'tpope/vim-vividchalk'
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-unimpaired'
+Bundle 'terryma/vim-multiple-cursors'
 Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-unimpaired'
+Bundle 'tpope/vim-vividchalk'
+Bundle 'tsaleh/vim-matchit'
 Bundle 'Valloric/MatchTagAlways'
 Bundle 'vim-ruby/vim-ruby'
 
@@ -53,7 +59,8 @@ set nobackup
 set nowb
 set noswapfile
 
-colorscheme vividchalk
+set background=dark
+colorscheme solarized
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Leader key
@@ -79,7 +86,6 @@ nnoremap <silent> <leader><leader> <C-^>| "Easily switch between this and last b
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Clear search highlighting
-nnoremap <silent><Esc> :noh<cr>
 nnoremap <silent><C-c> :noh<cr>
 
 " Comfortable command
@@ -87,8 +93,8 @@ nnoremap ; :
 vnoremap ; :
 
 " New colemak mappings
-nnoremap cc yy|  " Double c to yank line
-nnoremap <C-a> <C-v>| "Block selection to a key
+" Why did he map r to i?
+" onoremap iw iw|      " inner word
 
 if has("unix")
   if system('uname')=~'Darwin'
@@ -123,6 +129,23 @@ let g:mta_filetypes = {
     \ 'eruby' : 1,
     \}
 
+" Surround.vim
+let g:surround_no_mappings=1
+nmap ds  <Plug>Dsurround
+nmap ws  <Plug>Csurround
+nmap cs  <Plug>Ysurround
+nmap cS  <Plug>YSurround
+nmap css <Plug>Yssurround
+nmap cSs <Plug>YSsurround
+nmap cSS <Plug>YSsurround
+xmap S   <Plug>VSurround
+xmap gS  <Plug>VgSurround
+imap <C-S> <Plug>Isurround
+imap <C-G>s <Plug>Isurround
+imap <C-G>S <Plug>ISurround
+
+" Emmet
+let g:user_emmet_leader_key = '<c-e>'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Commands
