@@ -12,12 +12,13 @@ Bundle 'gmarik/vundle'
 Bundle '907th/vim-auto-save'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'dlip/vim-colemak'
+Bundle 'dlip/vim-fugitive'
 Bundle 'ecomba/vim-ruby-refactoring'
 Bundle 'kien/ctrlp.vim'
 Bundle 'mattn/emmet-vim'
+Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'terryma/vim-multiple-cursors'
-Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
@@ -91,6 +92,9 @@ nnoremap <silent><C-c> :noh<cr>
 " Comfortable command
 nnoremap ; :
 vnoremap ; :
+
+" Lazy save
+nnoremap <silent>, :wa<cr>
 
 " New colemak mappings
 " Why did he map r to i?
