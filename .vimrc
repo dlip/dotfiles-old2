@@ -14,10 +14,13 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'dlip/vim-colemak'
 Bundle 'dlip/vim-fugitive'
 Bundle 'ecomba/vim-ruby-refactoring'
+Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
+Bundle 'Lokaltog/vim-easymotion'
 Bundle 'mattn/emmet-vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/syntastic'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-surround'
@@ -62,7 +65,7 @@ set noswapfile
 
 set background=dark
 colorscheme solarized
-
+f
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Leader key
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -71,6 +74,7 @@ let g:mapleader = "\<space>"
 
 nnoremap <silent> <leader>b :CtrlPBuffer<cr>| " Search buffers
 nnoremap <leader>e <C-W>j| " Move to split below
+let g:EasyMotion_leader_key = '<Leader>,'
 nnoremap <silent> <leader>gs :Gstatus<cr>| " Git status
 nnoremap <leader>i <C-W>l| " Move to split right
 nnoremap <leader>l gT|     " Move to tab left
