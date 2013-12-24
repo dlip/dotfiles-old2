@@ -127,6 +127,7 @@ let NERDTreeMapOpenExpl='' "Normally e
 let NERDTreeMapUpdir='' "Normally u
 let NERDTreeMapOpenSplit='' "Normally i
 let NERDTreeMapQuit='q'
+let g:NERDTreeDirArrows=0
 
 " MatchTagAlways Options
 let g:mta_filetypes = {
