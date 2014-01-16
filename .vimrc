@@ -63,8 +63,26 @@ set nobackup
 set nowb
 set noswapfile
 
+if has("gui_running")
+  set guioptions+=LlRrb
+  set guioptions-=LlRrb
+  set guioptions-=T
+  set guioptions-=m
+  set t_Co=256
+  set lines=40 columns=130
+  if has('mac')
+    set gfn=Consolas:h11
+  elseif has('win32')
+    set gfn=Consolas:h11
+  elseif has('unix')
+    set gfn=Monospace\ 10
+  endif
+endif
+
 set background=dark
 colorscheme solarized
+
+" Set font according to system
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Leader key
@@ -90,8 +108,13 @@ nnoremap <silent> <leader><leader> <C-^>| "Easily switch between this and last b
 " => Other remappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Clear search highlighting
-nnoremap <silent><C-c> :noh<cr>
+" Tab
+" Map tab to esc
+vnoremap <Tab> <Esc>gV
+onoremap <Tab> <Esc>
+inoremap <Tab> <Esc>`^
+inoremap <s-Tab> <Tab>
+nnoremap <silent> <Tab> :noh<cr>
 
 " Comfortable command
 nnoremap ; :
@@ -119,6 +142,7 @@ elseif has('win32')
   vnoremap <C-c> "+y| " Copy into clipboard 
   nnoremap <C-v> "+p| " Paste from clipboard      
 endif
+
 
 "NerdTree Options
 let g:NERDTreeQuitOnOpen = 1
@@ -155,6 +179,9 @@ imap <C-G>S <Plug>ISurround
 
 " Emmet
 let g:user_emmet_leader_key = '<c-e>'
+
+" Autosave
+let g:auto_save = 1  " enable AutoSave on Vim startup
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Commands
