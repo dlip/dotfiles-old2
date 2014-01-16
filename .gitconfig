@@ -5,9 +5,14 @@
 [alias]
   st = status
   ci = commit
+  cia = commit -av
+  br = branch
   co = checkout
-  di = diff
+  df = diff
   dc = diff --cached
+  lg = log -p
+  who = shortlog -s --
+
   amend = commit --amend
   aa = add --all
   head = !git l -1
