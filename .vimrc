@@ -131,7 +131,7 @@ if has("unix")
   if system('uname')=~'Darwin'
     vnoremap <C-x> "*dd|" Cut into clipboard       
     vnoremap <C-c> "*y| " Copy into clipboard 
-    nnoremap <C-v> "*p| " Paste from clipboard      
+    imap <C-V> <C-O>:set paste<CR><C-R>+<C-O>:set nopaste<CR>
   else
     vnoremap <C-x> "+dd|" Cut into clipboard       
     vnoremap <C-c> "+y| " Copy into clipboard 
@@ -142,7 +142,6 @@ elseif has('win32')
   vnoremap <C-c> "+y| " Copy into clipboard 
   nnoremap <C-v> "+p| " Paste from clipboard      
 endif
-
 
 "NerdTree Options
 let g:NERDTreeQuitOnOpen = 1
