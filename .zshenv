@@ -1,1 +1,0 @@
-/Users/dane.lipscombe/.zprezto/runcoms/zshenv
