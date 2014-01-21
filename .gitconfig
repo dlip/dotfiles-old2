@@ -36,5 +36,3 @@
   prompt = false
 [include]
   path = .gitconfig.extra
-[push]
-	default = simple

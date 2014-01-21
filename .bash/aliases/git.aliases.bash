@@ -33,23 +33,8 @@ alias gg="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %
 alias ggs="gg --stat"
 alias gsl="git shortlog -sn"
 alias gw="git whatchanged"
+alias gd='git diff | vim -R -'
 
 # Will cd into the top of the current repository
 # or submodule.
 alias gcd='cd $(git rev-parse --show-toplevel || echo ".")'
-
-if [ -z "$EDITOR" ]; then
-    case $OSTYPE in
-      linux*)
-        alias gd='git diff | vim -R -'
-        ;;
-      darwin*)
-        alias gd='git diff | mate'
-        ;;
-      *)
-        alias gd='git diff'
-        ;;
-    esac
-else
-    alias gd="git diff | $EDITOR"
-fi

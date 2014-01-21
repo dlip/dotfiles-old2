@@ -1,2 +1,4 @@
 [user]
 	email = dane@lipscombe.com.au
+[push]
+	default = simple
