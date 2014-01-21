@@ -4,6 +4,12 @@
 /.vim/bundle
 !/.vim/bundle/vundle
 
+!/.bash
+!/.bashrc
+!/.bash_profile
+
+!/bin
+
 !/.gitignore
 !/.gitconfig
 !/.gitconfig.extra.example
