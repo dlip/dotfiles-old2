@@ -13,5 +13,6 @@
 !/.gitignore
 !/.gitconfig
 !/.gitconfig.extra.example
+!/.lesskey
 !/.screenrc
 !/.vimrc
