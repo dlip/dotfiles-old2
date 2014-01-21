@@ -2,8 +2,6 @@
 
 # Utility
 alias reload='source ~/.bashrc'
-alias ea='vim ~/.bash/aliases && reload' # Edit aliases
-alias ee="vim ~/.bash/env"
 alias v="vim"
 
 # Common -- Some are from Damian Conway

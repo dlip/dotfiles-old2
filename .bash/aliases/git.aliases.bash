@@ -34,6 +34,10 @@ alias ggs="gg --stat"
 alias gsl="git shortlog -sn"
 alias gw="git whatchanged"
 
+# Will cd into the top of the current repository
+# or submodule.
+alias gcd='cd $(git rev-parse --show-toplevel || echo ".")'
+
 if [ -z "$EDITOR" ]; then
     case $OSTYPE in
       linux*)
