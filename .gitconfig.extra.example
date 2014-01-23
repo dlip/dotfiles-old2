@@ -2,3 +2,8 @@
 	email = dane@lipscombe.com.au
 [push]
 	default = simple
+[core]
+  #mac/linux
+	autocrlf = input
+  #windows
+	#autocrlf = true
