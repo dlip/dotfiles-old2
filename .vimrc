@@ -14,6 +14,7 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'dlip/vim-colemak'
 Bundle 'dlip/vim-fugitive'
 Bundle 'ecomba/vim-ruby-refactoring'
+Bundle 'jonathanfilip/vim-lucius'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
 Bundle 'Lokaltog/vim-easymotion'
@@ -57,6 +58,8 @@ set shiftwidth=2
 set autoindent
 set expandtab
 set backspace=indent,eol,start
+set nostartofline  " Avoid cursor moving to start of line when switching buffers
+set nofoldenable    " disable folding
 
 " Turn backup off, since most stuff is in SVN, git anyway...
 set nobackup
@@ -80,7 +83,7 @@ if has("gui_running")
 endif
 
 set background=dark
-colorscheme solarized
+colorscheme lucius
 
 " Set font according to system
 
@@ -126,6 +129,11 @@ nnoremap <silent>, :wa<cr>
 " New colemak mappings
 " Why did he map r to i?
 " onoremap iw iw|      " inner word
+vnoremap v "_dP| "Paste in visual mode doesn't yank
+vnoremap y e
+vnoremap l b
+vnoremap Y E
+vnoremap L B
 
 if has("unix")
   if system('uname')=~'Darwin'
@@ -145,12 +153,15 @@ endif
 
 "NerdTree Options
 let g:NERDTreeQuitOnOpen = 1
-let NERDTreeMapMenu='M'
-let NERDTreeMapOpenExpl='' "Normally e
-let NERDTreeMapUpdir='' "Normally u
-let NERDTreeMapOpenSplit='' "Normally i
-let NERDTreeMapQuit='q'
+let g:NERDTreeMapMenu='M'
+let g:NERDTreeMapOpenExpl='' "Normally e
+let g:NERDTreeMapUpdir='' "Normally u
+let g:NERDTreeMapOpenSplit='' "Normally i
+let g:NERDTreeMapQuit='q'
 let g:NERDTreeDirArrows=0
+let g:NERDTreeMapHelp='H'
+let g:NERDTreeMapUpdirKeepOpen='' " U
+let g:NERDTreeMapPreviewSplit='' " G
 
 " MatchTagAlways Options
 let g:mta_filetypes = {
@@ -177,10 +188,16 @@ imap <C-G>s <Plug>Isurround
 imap <C-G>S <Plug>ISurround
 
 " Emmet
-let g:user_emmet_leader_key = '<c-e>'
+let g:user_emmet_leader_key = '<C-o>'
+imap <C-e> <C-o>,
 
 " Autosave
 let g:auto_save = 1  " enable AutoSave on Vim startup
+
+" Multiple cursors
+highlight multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
+highlight link multiple_cursors_visual Visual
+let g:multi_cursor_quit_key='<Tab>'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Commands
