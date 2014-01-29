@@ -10,6 +10,9 @@ Bundle 'gmarik/vundle'
 
 " My Bundles here:
 Bundle '907th/vim-auto-save'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'SirVer/ultisnips'
+Bundle 'Valloric/MatchTagAlways'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'dlip/vim-colemak'
 Bundle 'dlip/vim-fugitive'
@@ -17,8 +20,8 @@ Bundle 'ecomba/vim-ruby-refactoring'
 Bundle 'jonathanfilip/vim-lucius'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
-Bundle 'Lokaltog/vim-easymotion'
 Bundle 'mattn/emmet-vim'
+Bundle 'rking/ag.vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
@@ -28,7 +31,6 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-vividchalk'
 Bundle 'tsaleh/vim-matchit'
-Bundle 'Valloric/MatchTagAlways'
 Bundle 'vim-ruby/vim-ruby'
 
 filetype plugin indent on " Enable filetype-specific indenting and plugins
@@ -115,9 +117,9 @@ nnoremap <silent> <leader><leader> <C-^>| "Easily switch between this and last b
 " Map tab to esc
 vnoremap <Tab> <Esc>gV
 onoremap <Tab> <Esc>
-inoremap <Tab> <Esc>`^
 inoremap <s-Tab> <Tab>
-nnoremap <silent> <Tab> :noh<cr>
+nnoremap <tab> :wa<cr>:silent !osascript ~/bin/refreshchrome.applescript 'http://localhost:3000/'<cr>:redraw!<cr>
+nnoremap <silent> <C-l> :noh<cr>
 
 " Comfortable command
 nnoremap ; :
@@ -130,10 +132,15 @@ nnoremap <silent>, :wa<cr>
 " Why did he map r to i?
 " onoremap iw iw|      " inner word
 vnoremap v "_dP| "Paste in visual mode doesn't yank
+
+" Change next word to end of word in visual mode
 vnoremap y e
 vnoremap l b
 vnoremap Y E
 vnoremap L B
+
+"Select all text in current buffer
+nnoremap <Leader>a ggVG
 
 if has("unix")
   if system('uname')=~'Darwin'
@@ -186,18 +193,41 @@ xmap gS  <Plug>VgSurround
 imap <C-S> <Plug>Isurround
 imap <C-G>s <Plug>Isurround
 imap <C-G>S <Plug>ISurround
+let b:surround_{char2nr('=')} = "<%= \r %>"
+let b:surround_{char2nr('-')} = "<% \r %>"
 
 " Emmet
 let g:user_emmet_leader_key = '<C-o>'
 imap <C-e> <C-o>,
 
 " Autosave
-let g:auto_save = 1  " enable AutoSave on Vim startup
+" let g:auto_save = 1  " enable AutoSave on Vim startup
 
 " Multiple cursors
 highlight multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
 highlight link multiple_cursors_visual Visual
 let g:multi_cursor_quit_key='<Tab>'
+
+" Ultisnip
+function! g:UltiSnips_Complete()
+    call UltiSnips_ExpandSnippet()
+    if g:ulti_expand_res == 0
+        if pumvisible()
+            return "\<C-n>"
+        else
+            call UltiSnips_JumpForwards()
+            if g:ulti_jump_forwards_res == 0
+               return "\<ESC>`^"
+            endif
+        endif
+    endif
+    return ""
+endfunction
+
+au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsListSnippets="<c-l>"
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Commands
