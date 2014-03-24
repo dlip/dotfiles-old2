@@ -40,3 +40,6 @@ alias r="rake"
 # Rails
 alias rs='bundle exec rails s'
 alias rl='tail -f log/*.log'
+
+# Speedread
+function sr() { cat "$@" | speedread -w 500;}
