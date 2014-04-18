@@ -14,9 +14,11 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'SirVer/ultisnips'
 Bundle 'Valloric/MatchTagAlways'
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'digitaltoad/vim-jade'
 Bundle 'dlip/vim-colemak'
 Bundle 'dlip/vim-fugitive'
 Bundle 'ecomba/vim-ruby-refactoring'
+Bundle 'ekalinin/Dockerfile.vim'
 Bundle 'jonathanfilip/vim-lucius'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
@@ -32,6 +34,7 @@ Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-vividchalk'
 Bundle 'tsaleh/vim-matchit'
 Bundle 'vim-ruby/vim-ruby'
+Bundle 'joonty/vdebug'
 
 filetype plugin indent on " Enable filetype-specific indenting and plugins
 
@@ -98,7 +101,10 @@ let g:mapleader = "\<space>"
 nnoremap <silent> <leader>b :CtrlPBuffer<cr>| " Search buffers
 nnoremap <leader>e <C-W>j| " Move to split below
 let g:EasyMotion_leader_key = '<Leader>,'
-nnoremap <silent> <leader>gs :Gstatus<cr>| " Git status
+nnoremap <silent> <leader>gg :Gstatus<cr>| " Git status
+nnoremap <silent> <leader>gp :Git push<cr>
+nnoremap <silent> <leader>gl :Git pull --rebase<cr>
+nnoremap <silent> <leader>gd :Gdiff<cr>
 nnoremap <leader>i <C-W>l| " Move to split right
 nnoremap <leader>l gT|     " Move to tab left
 nnoremap <silent> <leader>m :CtrlPMRUFiles<cr>| " Search most recent files
@@ -107,6 +113,7 @@ nnoremap <leader>u <C-W>k| " Move to split above
 nnoremap <silent> <leader>v :e! ~/.vimrc<cr>| " Fast editing of the .vimrc
 nnoremap <leader>y gt|     " Move to tab right
 nnoremap <silent> <leader>/ :NERDTreeToggle<cr>
+nnoremap <silent> <leader>? :NERDTreeFind<cr>
 nnoremap <silent> <leader><leader> <C-^>| "Easily switch between this and last buffer
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -117,9 +124,10 @@ nnoremap <silent> <leader><leader> <C-^>| "Easily switch between this and last b
 " Map tab to esc
 vnoremap <Tab> <Esc>gV
 onoremap <Tab> <Esc>
+inoremap <Tab> <ESC>`^
 inoremap <s-Tab> <Tab>
-nnoremap <tab> :wa<cr>:silent !osascript ~/bin/refreshchrome.applescript 'http://localhost:3000/'<cr>:redraw!<cr>
-nnoremap <silent> <C-l> :noh<cr>
+nnoremap <tab> :silent !osascript ~/bin/refreshchrome.applescript 'http://localhost:3000/'<cr>:redraw!<cr>
+nnoremap <silent> <C-l> :noh<cr>:redraw!<cr>
 
 " Comfortable command
 nnoremap ; :
@@ -131,13 +139,12 @@ nnoremap <silent>, :wa<cr>
 " New colemak mappings
 " Why did he map r to i?
 " onoremap iw iw|      " inner word
-vnoremap v "_dP| "Paste in visual mode doesn't yank
 
 " Change next word to end of word in visual mode
-vnoremap y e
-vnoremap l b
-vnoremap Y E
-vnoremap L B
+"vnoremap y e
+"vnoremap Y E
+"vnoremap l b
+"vnoremap L B
 
 "Select all text in current buffer
 nnoremap <Leader>a ggVG
@@ -201,7 +208,7 @@ let g:user_emmet_leader_key = '<C-o>'
 imap <C-e> <C-o>,
 
 " Autosave
-" let g:auto_save = 1  " enable AutoSave on Vim startup
+let g:auto_save = 1  " enable AutoSave on Vim startup
 
 " Multiple cursors
 highlight multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
@@ -217,16 +224,20 @@ function! g:UltiSnips_Complete()
         else
             call UltiSnips_JumpForwards()
             if g:ulti_jump_forwards_res == 0
-               return "\<ESC>`^"
+               return "\<C-p>"
             endif
         endif
     endif
     return ""
 endfunction
 
+let g:UltiSnipsExpandTrigger="<C-p>"
 au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<C-p>"
 let g:UltiSnipsListSnippets="<c-l>"
+
+"ctrlp
+let g:ctrlp_working_path_mode = 0
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
