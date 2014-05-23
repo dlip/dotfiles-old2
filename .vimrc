@@ -1,4 +1,6 @@
 set nocompatible               " be iMproved
+
+
 filetype off                   " required!
 
 set rtp+=~/.vim/bundle/vundle/
@@ -22,6 +24,7 @@ Bundle 'ekalinin/Dockerfile.vim'
 Bundle 'jonathanfilip/vim-lucius'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
+Bundle "lepture/vim-jinja"
 Bundle 'mattn/emmet-vim'
 Bundle 'rking/ag.vim'
 Bundle 'scrooloose/nerdcommenter'
@@ -35,6 +38,8 @@ Bundle 'tpope/vim-vividchalk'
 Bundle 'tsaleh/vim-matchit'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'joonty/vdebug'
+Bundle 'maksimr/vim-jsbeautify'
+Bundle 'mustache/vim-mustache-handlebars'
 
 filetype plugin indent on " Enable filetype-specific indenting and plugins
 
@@ -122,12 +127,16 @@ nnoremap <silent> <leader><leader> <C-^>| "Easily switch between this and last b
 
 " Tab
 " Map tab to esc
-vnoremap <Tab> <Esc>gV
-onoremap <Tab> <Esc>
-inoremap <Tab> <ESC>`^
-inoremap <s-Tab> <Tab>
-nnoremap <tab> :silent !osascript ~/bin/refreshchrome.applescript 'http://localhost:3000/'<cr>:redraw!<cr>
+"vnoremap <Tab> <Esc>gV
+"onoremap <Tab> <Esc>
+"inoremap <Tab> <ESC>`^
+"inoremap <s-Tab> <Tab>
+"nnoremap <tab> :silent !osascript ~/bin/refreshchrome.applescript 'http://localhost:3000/'<cr>:redraw!<cr>
 nnoremap <silent> <C-l> :noh<cr>:redraw!<cr>
+set virtualedit=onemore
+inoremap <Enter> <ESC>`^
+nnoremap <Enter> i<Enter><ESC>
+nnoremap <S-Enter> O<ESC>
 
 " Comfortable command
 nnoremap ; :
@@ -213,7 +222,7 @@ let g:auto_save = 1  " enable AutoSave on Vim startup
 " Multiple cursors
 highlight multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
 highlight link multiple_cursors_visual Visual
-let g:multi_cursor_quit_key='<Tab>'
+"let g:multi_cursor_quit_key='<Tab>'
 
 " Ultisnip
 function! g:UltiSnips_Complete()
@@ -231,7 +240,7 @@ function! g:UltiSnips_Complete()
     return ""
 endfunction
 
-let g:UltiSnipsExpandTrigger="<C-p>"
+"let g:UltiSnipsExpandTrigger="<C-p>"
 au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
 let g:UltiSnipsJumpForwardTrigger="<C-p>"
 let g:UltiSnipsListSnippets="<c-l>"
@@ -245,4 +254,5 @@ let g:ctrlp_working_path_mode = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 autocmd! bufwritepost .vimrc source ~/.vimrc "Autoload vimrc
+autocmd BufRead,BufNewFile *.sls setlocal filetype=yaml
 
