@@ -1,46 +1,42 @@
 set nocompatible               " be iMproved
 
-
 filetype off                   " required!
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/vundle'
 
-" let Vundle manage Vundle
-" required! 
-Bundle 'gmarik/vundle'
+Plugin '907th/vim-auto-save'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'Valloric/MatchTagAlways'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'digitaltoad/vim-jade'
+Plugin 'dlip/vim-colemak'
+Plugin 'dlip/vim-fugitive'
+Plugin 'ecomba/vim-ruby-refactoring'
+Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'jonathanfilip/vim-lucius'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'kien/ctrlp.vim'
+Plugin 'lepture/vim-jinja'
+Plugin 'mattn/emmet-vim'
+Plugin 'rking/ag.vim'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-vividchalk'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'joonty/vdebug'
+Plugin 'maksimr/vim-jsbeautify'
+Plugin 'mustache/vim-mustache-handlebars'
 
-" My Bundles here:
-Bundle '907th/vim-auto-save'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'SirVer/ultisnips'
-Bundle 'Valloric/MatchTagAlways'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'digitaltoad/vim-jade'
-Bundle 'dlip/vim-colemak'
-Bundle 'dlip/vim-fugitive'
-Bundle 'ecomba/vim-ruby-refactoring'
-Bundle 'ekalinin/Dockerfile.vim'
-Bundle 'jonathanfilip/vim-lucius'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'kien/ctrlp.vim'
-Bundle "lepture/vim-jinja"
-Bundle 'mattn/emmet-vim'
-Bundle 'rking/ag.vim'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/syntastic'
-Bundle 'terryma/vim-multiple-cursors'
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'tpope/vim-vividchalk'
-Bundle 'tsaleh/vim-matchit'
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'joonty/vdebug'
-Bundle 'maksimr/vim-jsbeautify'
-Bundle 'mustache/vim-mustache-handlebars'
-
+call vundle#end()
 filetype plugin indent on " Enable filetype-specific indenting and plugins
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -75,6 +71,10 @@ set nofoldenable    " disable folding
 set nobackup
 set nowb
 set noswapfile
+
+if $COLORTERM == 'gnome-terminal'
+  set t_Co=256
+endif
 
 if has("gui_running")
   set guioptions+=LlRrb
@@ -224,26 +224,9 @@ highlight multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
 highlight link multiple_cursors_visual Visual
 "let g:multi_cursor_quit_key='<Tab>'
 
-" Ultisnip
-function! g:UltiSnips_Complete()
-    call UltiSnips_ExpandSnippet()
-    if g:ulti_expand_res == 0
-        if pumvisible()
-            return "\<C-n>"
-        else
-            call UltiSnips_JumpForwards()
-            if g:ulti_jump_forwards_res == 0
-               return "\<C-p>"
-            endif
-        endif
-    endif
-    return ""
-endfunction
-
-"let g:UltiSnipsExpandTrigger="<C-p>"
-au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
-let g:UltiSnipsJumpForwardTrigger="<C-p>"
-let g:UltiSnipsListSnippets="<c-l>"
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 "ctrlp
 let g:ctrlp_working_path_mode = 0
