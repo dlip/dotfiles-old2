@@ -12,6 +12,7 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'Valloric/MatchTagAlways'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'croaky/vim-colors-github'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'dlip/vim-colemak'
 Plugin 'dlip/vim-fugitive'
@@ -92,8 +93,8 @@ if has("gui_running")
   endif
 endif
 
-set background=dark
-colorscheme lucius
+set background=light
+colorscheme github
 
 " Set font according to system
 
@@ -134,6 +135,7 @@ nnoremap <silent> <leader><leader> <C-^>| "Easily switch between this and last b
 "nnoremap <tab> :silent !osascript ~/bin/refreshchrome.applescript 'http://localhost:3000/'<cr>:redraw!<cr>
 nnoremap <silent> <C-l> :noh<cr>:redraw!<cr>
 set virtualedit=onemore
+vnoremap <Enter> <Esc>gV
 inoremap <Enter> <ESC>`^
 nnoremap <Enter> i<Enter><ESC>
 nnoremap <S-Enter> O<ESC>
