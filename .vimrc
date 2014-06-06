@@ -24,6 +24,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'lepture/vim-jinja'
 Plugin 'mattn/emmet-vim'
 Plugin 'rking/ag.vim'
+Plugin 'saltstack/salt-vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
@@ -239,5 +240,3 @@ let g:ctrlp_working_path_mode = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 autocmd! bufwritepost .vimrc source ~/.vimrc "Autoload vimrc
-autocmd BufRead,BufNewFile *.sls setlocal filetype=yaml
-
