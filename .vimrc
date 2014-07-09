@@ -115,6 +115,7 @@ nnoremap <silent> <leader>gd :Gdiff<cr>
 nnoremap <leader>i <C-W>l| " Move to split right
 nnoremap <leader>l gT|     " Move to tab left
 nnoremap <silent> <leader>m :CtrlPMRUFiles<cr>| " Search most recent files
+nnoremap <silent> <leader>p :CtrlPCurWD<cr>| " Search working dir
 nnoremap <leader>n <C-W>h| " Move to split left
 nnoremap <leader>u <C-W>k| " Move to split above
 nnoremap <silent> <leader>v :e! ~/.vimrc<cr>| " Fast editing of the .vimrc
@@ -151,6 +152,7 @@ nnoremap <silent>, :wa<cr>
 " New colemak mappings
 " Why did he map r to i?
 " onoremap iw iw|      " inner word
+nnoremap J Jx
 
 " Change next word to end of word in visual mode
 "vnoremap y e
@@ -240,3 +242,9 @@ let g:ctrlp_working_path_mode = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 autocmd! bufwritepost .vimrc source ~/.vimrc "Autoload vimrc
+
+"Fix annoying remapping of i
+au FileType eruby,ruby xunmap <buffer> iM
+au FileType eruby,ruby ounmap <buffer> iM
+au FileType eruby,ruby xunmap <buffer> im
+au FileType eruby,ruby ounmap <buffer> im
