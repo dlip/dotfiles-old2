@@ -7,11 +7,63 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
 
+let mapleader = "\<space>"
+let g:mapleader = "\<space>"
+
+" functions {{{
+  function! s:get_cache_dir(suffix) "{{{
+    return resolve(expand('~/.vim/.cache/' . a:suffix))
+  endfunction "}}}
+"}}}
+
 " Keyboard Layout
 NeoBundle 'dlip/vim-colemak'
 
 " Search
-NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'Shougo/vimproc', { 'build': {
+  \   'windows': 'make -f make_mingw32.mak',
+  \   'cygwin': 'make -f make_cygwin.mak',
+  \   'mac': 'make -f make_mac.mak',
+  \   'unix': 'make -f make_unix.mak',
+\ } }
+
+NeoBundle 'Shougo/unite.vim' "{{{
+  let bundle = neobundle#get('unite.vim')
+  function! bundle.hooks.on_source(bundle)
+    call unite#filters#matcher_default#use(['matcher_fuzzy'])
+    call unite#filters#sorter_default#use(['sorter_rank'])
+    call unite#set_profile('files', 'smartcase', 1)
+    call unite#custom#source('line,outline','matchers','matcher_fuzzy')
+  endfunction
+
+  function! s:unite_settings()
+    nmap <buffer> Q <plug>(unite_exit)
+    nmap <buffer> <esc> <plug>(unite_exit)
+    imap <buffer> <esc> <plug>(unite_exit)
+  endfunction
+  autocmd FileType unite call s:unite_settings()
+
+  let g:unite_data_directory=s:get_cache_dir('unite')
+  let g:unite_enable_start_insert=1
+  let g:unite_source_history_yank_enable=1
+  let g:unite_source_rec_max_cache_files=50000
+  let g:unite_prompt='» '
+  nmap <space> [unite]
+  nnoremap [unite] <nop>
+
+  nnoremap <silent> [unite]p :<C-u>Unite -toggle -auto-resize -buffer-name=mixed file_rec/async:! buffer file_mru bookmark<cr><c-u>
+  nnoremap <silent> [unite]f :<C-u>Unite -toggle -auto-resize -buffer-name=files file_rec/async:!<cr><c-u>
+  nnoremap <silent> [unite]m :<C-u>Unite -buffer-name=recent file_mru<cr>
+  nnoremap <silent> [unite]w :<C-u>Unite -buffer-name=gitgrep vcs_grep/git<cr>
+  nnoremap <silent> [unite]y :<C-u>Unite -buffer-name=yanks history/yank<cr>
+  nnoremap <silent> [unite]l :<C-u>Unite -auto-resize -buffer-name=line line<cr>
+  nnoremap <silent> [unite]b :<C-u>Unite -auto-resize -buffer-name=buffers buffer<cr>
+  nnoremap <silent> [unite]r :<C-u>Unite -no-quit -buffer-name=search grep:.<cr>
+  nnoremap <silent> [unite]' :<C-u>Unite -auto-resize -buffer-name=mappings mapping<cr>
+  nnoremap <silent> [unite]s :<C-u>Unite -quick-match buffer<cr>
+"}}}
+NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'sgur/unite-git_grep'
 NeoBundle 'rking/ag.vim'
 
 " Motions
@@ -35,14 +87,20 @@ NeoBundle 'tpope/vim-rails'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'Valloric/MatchTagAlways'
 
-" Colors
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'croaky/vim-colors-github'
-NeoBundle 'jonathanfilip/vim-lucius'
-NeoBundle 'tpope/vim-vividchalk'
-
 " Version control
-NeoBundle 'dlip/vim-fugitive'
+"NeoBundle 'dlip/vim-fugitive'
+NeoBundle 'tpope/vim-fugitive' "{{{
+  nnoremap <silent> <leader>gg :Gstatus<CR>
+  nnoremap <silent> <leader>gd :Gdiff<CR>
+  nnoremap <silent> <leader>gc :Gcommit<CR>
+  nnoremap <silent> <leader>gb :Gblame<CR>
+  nnoremap <silent> <leader>gl :Git pull --rebase<cr>
+  nnoremap <silent> <leader>go :Glog<CR>
+  nnoremap <silent> <leader>gp :Git push<CR>
+  nnoremap <silent> <leader>gw :Gwrite<CR>
+  nnoremap <silent> <leader>gr :Gremove<CR>
+  autocmd BufReadPost fugitive://* set bufhidden=delete
+"}}}
 
 " Text objects
 NeoBundle 'terryma/vim-multiple-cursors'
@@ -52,7 +110,26 @@ NeoBundle 'tpope/vim-surround'
 NeoBundle 'scrooloose/nerdcommenter'
 
 " File browsing
-NeoBundle 'scrooloose/nerdtree'
+NeoBundleLazy 'scrooloose/nerdtree', {'autoload':{'commands':['NERDTreeToggle','NERDTreeFind']}} "{{{
+  let NERDTreeShowHidden=1
+  let NERDTreeQuitOnOpen=1
+  let NERDTreeShowLineNumbers=0
+  let NERDTreeChDirMode=0
+  let NERDTreeShowBookmarks=0
+  let NERDTreeDirArrows=0
+  let NERDTreeIgnore=['\.git','\.hg']
+  let NERDTreeBookmarksFile=s:get_cache_dir('NERDTreeBookmarks')
+  let NERDTreeMapMenu='M'
+  let NERDTreeMapOpenExpl='' "Normally e
+  let NERDTreeMapUpdir='' "Normally u
+  let NERDTreeMapOpenSplit='' "Normally i
+  let NERDTreeMapQuit='q'
+  let NERDTreeMapHelp='H'
+  let NERDTreeMapUpdirKeepOpen='' " U
+  let NERDTreeMapPreviewSplit='' " G
+  nnoremap <silent> <leader>/ :NERDTreeToggle<cr>
+  nnoremap <silent> <leader>? :NERDTreeFind<cr>
+"}}}
 
 " Syntax checking
 NeoBundle 'scrooloose/syntastic'
@@ -62,9 +139,47 @@ NeoBundle '907th/vim-auto-save'
 NeoBundle 'joonty/vdebug'
 NeoBundle 'maksimr/vim-jsbeautify'
 
+" Color schemes
+"NeoBundle 'altercation/vim-colors-solarized'
+"NeoBundle 'croaky/vim-colors-github'
+NeoBundle 'jonathanfilip/vim-lucius'
+"NeoBundle 'tpope/vim-vividchalk'
+"NeoBundle 'nanotech/jellybeans.vim'
+"NeoBundle 'tomasr/molokai'
+"NeoBundle 'chriskempson/vim-tomorrow-theme'
+"NeoBundle 'chriskempson/base16-vim'
+"NeoBundle 'w0ng/vim-hybrid'
+"NeoBundle 'sjl/badwolf'
+"NeoBundle 'zeis/vim-kolor' "{{{
+  "let g:kolor_underlined=1
+""}}}
+
 call neobundle#end()
 filetype plugin indent on
 NeoBundleCheck
+
+if $COLORTERM == 'gnome-terminal'
+  set t_Co=256
+endif
+
+if has("gui_running")
+  set guioptions+=LlRrb
+  set guioptions-=LlRrb
+  set guioptions-=T
+  set guioptions-=m
+  set t_Co=256
+  set lines=40 columns=130
+  if has('mac')
+    set gfn=Consolas:h11
+  elseif has('win32')
+    set gfn=Consolas:h11
+  elseif has('unix')
+    set gfn=Monospace\ 10
+  endif
+endif
+
+set background=dark
+colorscheme lucius
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM Options
@@ -99,68 +214,28 @@ set nobackup
 set nowb
 set noswapfile
 
-if $COLORTERM == 'gnome-terminal'
-  set t_Co=256
-endif
-
-if has("gui_running")
-  set guioptions+=LlRrb
-  set guioptions-=LlRrb
-  set guioptions-=T
-  set guioptions-=m
-  set t_Co=256
-  set lines=40 columns=130
-  if has('mac')
-    set gfn=Consolas:h11
-  elseif has('win32')
-    set gfn=Consolas:h11
-  elseif has('unix')
-    set gfn=Monospace\ 10
-  endif
-endif
-
-set background=light
-colorscheme github
 
 " Set font according to system
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Leader key
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let mapleader = "\<space>"
-let g:mapleader = "\<space>"
 
-nnoremap <silent> <leader>b :CtrlPBuffer<cr>| " Search buffers
 nnoremap <leader>e <C-W>j| " Move to split below
 let g:EasyMotion_leader_key = '<Leader>,'
-nnoremap <silent> <leader>gg :Gstatus<cr>| " Git status
-nnoremap <silent> <leader>gp :Git push<cr>
-nnoremap <silent> <leader>gl :Git pull --rebase<cr>
-nnoremap <silent> <leader>gd :Gdiff<cr>
 nnoremap <leader>i <C-W>l| " Move to split right
-nnoremap <leader>l gT|     " Move to tab left
-nnoremap <silent> <leader>m :CtrlPMRUFiles<cr>| " Search most recent files
-nnoremap <silent> <leader>p :CtrlPCurWD<cr>| " Search working dir
-"nnoremap <silent> <leader>p :Unite -toggle -auto-resize -buffer-name=mixed file_rec/async:! buffer bookmark<cr>
+"nnoremap <leader>l gT|     " Move to tab left
 nnoremap <leader>n <C-W>h| " Move to split left
 nnoremap <leader>u <C-W>k| " Move to split above
 nnoremap <silent> <leader>v :e! ~/.vimrc<cr>| " Fast editing of the .vimrc
-nnoremap <leader>y gt|     " Move to tab right
-nnoremap <silent> <leader>/ :NERDTreeToggle<cr>
-nnoremap <silent> <leader>? :NERDTreeFind<cr>
+"nnoremap <leader>y gt|     " Move to tab right
 nnoremap <silent> <leader><leader> <C-^>| "Easily switch between this and last buffer
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Other remappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Tab
-" Map tab to esc
-"vnoremap <Tab> <Esc>gV
-"onoremap <Tab> <Esc>
-"inoremap <Tab> <ESC>`^
-"inoremap <s-Tab> <Tab>
-"nnoremap <tab> :silent !osascript ~/bin/refreshchrome.applescript 'http://localhost:3000/'<cr>:redraw!<cr>
+" Map Enter to esc
 nnoremap <silent> <C-l> :noh<cr>:redraw!<cr>
 set virtualedit=onemore
 nnoremap <F2> :set invpaste paste?<CR>
@@ -208,17 +283,6 @@ elseif has('win32')
   nnoremap <C-v> "+p| " Paste from clipboard
 endif
 
-"NerdTree Options
-let g:NERDTreeQuitOnOpen = 1
-let g:NERDTreeMapMenu='M'
-let g:NERDTreeMapOpenExpl='' "Normally e
-let g:NERDTreeMapUpdir='' "Normally u
-let g:NERDTreeMapOpenSplit='' "Normally i
-let g:NERDTreeMapQuit='q'
-let g:NERDTreeDirArrows=0
-let g:NERDTreeMapHelp='H'
-let g:NERDTreeMapUpdirKeepOpen='' " U
-let g:NERDTreeMapPreviewSplit='' " G
 
 " MatchTagAlways Options
 let g:mta_filetypes = {
@@ -263,7 +327,7 @@ let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 "ctrlp
-let g:ctrlp_working_path_mode = 0
+"let g:ctrlp_working_path_mode = 0
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -273,9 +337,9 @@ let g:ctrlp_working_path_mode = 0
 autocmd! bufwritepost .vimrc source ~/.vimrc "Autoload vimrc
 
 "Fix annoying remapping of i
-au FileType eruby,ruby xunmap <buffer> iM
-au FileType eruby,ruby ounmap <buffer> iM
-au FileType eruby,ruby xunmap <buffer> im
-au FileType eruby,ruby ounmap <buffer> im
+"au FileType eruby,ruby xunmap <buffer> iM
+"au FileType eruby,ruby ounmap <buffer> iM
+"au FileType eruby,ruby xunmap <buffer> im
+"au FileType eruby,ruby ounmap <buffer> im
 
 au FileType qf nnoremap <buffer> <Enter> <Enter>
