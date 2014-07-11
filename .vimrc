@@ -248,3 +248,5 @@ au FileType eruby,ruby xunmap <buffer> iM
 au FileType eruby,ruby ounmap <buffer> iM
 au FileType eruby,ruby xunmap <buffer> im
 au FileType eruby,ruby ounmap <buffer> im
+
+au FileType qf nnoremap <buffer> <Enter> <Enter>
