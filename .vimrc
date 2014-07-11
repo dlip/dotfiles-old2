@@ -1,45 +1,70 @@
-set nocompatible               " be iMproved
+if has('vim_starting')
+  set nocompatible               " Be iMproved
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
 
-filetype off                   " required!
+call neobundle#begin(expand('~/.vim/bundle/'))
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'gmarik/vundle'
+NeoBundleFetch 'Shougo/neobundle.vim'
 
-Plugin '907th/vim-auto-save'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'Valloric/MatchTagAlways'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'croaky/vim-colors-github'
-Plugin 'digitaltoad/vim-jade'
-Plugin 'dlip/vim-colemak'
-Plugin 'dlip/vim-fugitive'
-Plugin 'ecomba/vim-ruby-refactoring'
-Plugin 'ekalinin/Dockerfile.vim'
-Plugin 'jonathanfilip/vim-lucius'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'kien/ctrlp.vim'
-Plugin 'lepture/vim-jinja'
-Plugin 'mattn/emmet-vim'
-Plugin 'rking/ag.vim'
-Plugin 'saltstack/salt-vim'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'tpope/vim-vividchalk'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'joonty/vdebug'
-Plugin 'maksimr/vim-jsbeautify'
-Plugin 'mustache/vim-mustache-handlebars'
+" Keyboard Layout
+NeoBundle 'dlip/vim-colemak'
 
-call vundle#end()
-filetype plugin indent on " Enable filetype-specific indenting and plugins
+" Search
+NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'rking/ag.vim'
+
+" Motions
+NeoBundle 'Lokaltog/vim-easymotion'
+NeoBundle 'tpope/vim-unimpaired'
+
+" Snippets
+NeoBundle 'SirVer/ultisnips'
+NeoBundle 'honza/vim-snippets'
+
+" File types
+NeoBundle 'digitaltoad/vim-jade'
+NeoBundle 'ecomba/vim-ruby-refactoring'
+NeoBundle 'ekalinin/Dockerfile.vim'
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'lepture/vim-jinja'
+NeoBundle 'mattn/emmet-vim'
+NeoBundle 'mustache/vim-mustache-handlebars'
+NeoBundle 'saltstack/salt-vim'
+NeoBundle 'tpope/vim-rails'
+NeoBundle 'vim-ruby/vim-ruby'
+NeoBundle 'Valloric/MatchTagAlways'
+
+" Colors
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'croaky/vim-colors-github'
+NeoBundle 'jonathanfilip/vim-lucius'
+NeoBundle 'tpope/vim-vividchalk'
+
+" Version control
+NeoBundle 'dlip/vim-fugitive'
+
+" Text objects
+NeoBundle 'terryma/vim-multiple-cursors'
+NeoBundle 'tpope/vim-surround'
+
+" Comments
+NeoBundle 'scrooloose/nerdcommenter'
+
+" File browsing
+NeoBundle 'scrooloose/nerdtree'
+
+" Syntax checking
+NeoBundle 'scrooloose/syntastic'
+
+" Misc
+NeoBundle '907th/vim-auto-save'
+NeoBundle 'joonty/vdebug'
+NeoBundle 'maksimr/vim-jsbeautify'
+
+call neobundle#end()
+filetype plugin indent on
+NeoBundleCheck
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM Options
@@ -116,6 +141,7 @@ nnoremap <leader>i <C-W>l| " Move to split right
 nnoremap <leader>l gT|     " Move to tab left
 nnoremap <silent> <leader>m :CtrlPMRUFiles<cr>| " Search most recent files
 nnoremap <silent> <leader>p :CtrlPCurWD<cr>| " Search working dir
+"nnoremap <silent> <leader>p :Unite -toggle -auto-resize -buffer-name=mixed file_rec/async:! buffer bookmark<cr>
 nnoremap <leader>n <C-W>h| " Move to split left
 nnoremap <leader>u <C-W>k| " Move to split above
 nnoremap <silent> <leader>v :e! ~/.vimrc<cr>| " Fast editing of the .vimrc
@@ -137,6 +163,9 @@ nnoremap <silent> <leader><leader> <C-^>| "Easily switch between this and last b
 "nnoremap <tab> :silent !osascript ~/bin/refreshchrome.applescript 'http://localhost:3000/'<cr>:redraw!<cr>
 nnoremap <silent> <C-l> :noh<cr>:redraw!<cr>
 set virtualedit=onemore
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
+set showmode
 vnoremap <Enter> <Esc>gV
 inoremap <Enter> <ESC>`^
 nnoremap <Enter> i<Enter><ESC>
@@ -165,18 +194,18 @@ nnoremap <Leader>a ggVG
 
 if has("unix")
   if system('uname')=~'Darwin'
-    vnoremap <C-x> "*dd|" Cut into clipboard       
-    vnoremap <C-c> "*y| " Copy into clipboard 
+    vnoremap <C-x> "*dd|" Cut into clipboard
+    vnoremap <C-c> "*y| " Copy into clipboard
     imap <C-V> <C-O>:set paste<CR><C-R>+<C-O>:set nopaste<CR>
   else
-    vnoremap <C-x> "+dd|" Cut into clipboard       
-    vnoremap <C-c> "+y| " Copy into clipboard 
-    nnoremap <C-v> "+p| " Paste from clipboard      
+    vnoremap <C-x> "+dd|" Cut into clipboard
+    vnoremap <C-c> "+y| " Copy into clipboard
+    nnoremap <C-v> "+p| " Paste from clipboard
   endif
 elseif has('win32')
-  vnoremap <C-x> "+dd|" Cut into clipboard       
-  vnoremap <C-c> "+y| " Copy into clipboard 
-  nnoremap <C-v> "+p| " Paste from clipboard      
+  vnoremap <C-x> "+dd|" Cut into clipboard
+  vnoremap <C-c> "+y| " Copy into clipboard
+  nnoremap <C-v> "+p| " Paste from clipboard
 endif
 
 "NerdTree Options

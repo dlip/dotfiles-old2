@@ -2,7 +2,8 @@
 
 !/.vim
 /.vim/bundle
-!/.vim/bundle/Vundle.git
+!/.vim/bundle/neobundle.vim
+!/.oh-my-zsh
 
 !/.bash
 !/.bashrc
