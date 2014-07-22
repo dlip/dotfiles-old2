@@ -1,0 +1,14 @@
+'editor':
+  'fontSize': 15
+'core':
+  'themes': [
+    'atom-dark-ui'
+    'atom-dark-syntax'
+  ]
+'metrics': false
+'exception-reporting':
+  'userId': '9f35bb64-b6d6-0df6-04c0-81e365f531ac'
+'welcome':
+  'showOnStartup': false
+'autosave':
+  'enabled': true

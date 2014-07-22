@@ -1,0 +1,217 @@
+# Your keymap
+#
+# Atom keymaps work similarly to stylesheets. Just as stylesheets use selectors
+# to apply styles to elements, Atom keymaps use selectors to associate
+# keystrokes with events in specific contexts.
+#
+# You can create a new keybinding in this file by typing "key" and then hitting
+# tab.
+#
+# Here's an example taken from Atom's built-in keymap:
+#
+# '.editor':
+#   'enter': 'editor:newline'
+#
+# '.workspace':
+#   'ctrl-P': 'core:move-up'
+#   'ctrl-p': 'core:move-down'
+#
+
+'.editor.vim-mode:not(.command-mode)':
+  'ctrl-e': 'emmet:expand-abbreviation'
+  'ctrl-e': 'emmet:expand-abbreviation'
+
+  'enter': 'vim-mode:activate-command-mode'
+  'ctrl-[': 'vim-mode:activate-command-mode'
+
+'.platform-darwin .editor.vim-mode:not(.command-mode)':
+  'ctrl-c': 'vim-mode:activate-command-mode'
+
+'.editor.vim-mode:not(.insert-mode)':
+  'space g g': 'git-grep:grep'
+  'space g D': 'git-difftool:diff-project'
+  'space g d': 'git-difftool:diff-file'
+  'space g G': 'git-plus:menu'
+  'space g c': 'git-plus:commit'
+  'space g s': 'git-plus:status'
+  'space g C': 'git-plus:add-all-and-commit'
+  'space g u': 'git-plus:checkout-current-file'
+  'space g l': 'git-plus:pull'
+  'space g p': 'git-plus:push'
+  'space g b': 'git-blame:toggle'
+  'ctrl-h': 'find-and-replace:show-replace'
+  'ctrl-f': 'find-and-replace:show'
+
+  'n': 'vim-mode:move-left'
+  'left': 'vim-mode:move-left'
+  'backspace': 'core:backspace'
+  'i': 'vim-mode:move-right'
+  'right': 'vim-mode:move-right'
+  'u': 'vim-mode:move-up'
+  'up': 'vim-mode:move-up'
+  'e': 'vim-mode:move-down'
+  'down': 'vim-mode:move-down'
+
+  'w': 'vim-mode:move-to-next-word'
+  'W': 'vim-mode:move-to-next-whole-word'
+  'y': 'vim-mode:move-to-end-of-word'
+  'Y': 'vim-mode:move-to-end-of-whole-word'
+  'l': 'vim-mode:move-to-previous-word'
+  'L': 'vim-mode:move-to-previous-whole-word'
+  '}': 'vim-mode:move-to-next-paragraph'
+  '{': 'vim-mode:move-to-previous-paragraph'
+  '0': 'vim-mode:move-to-beginning-of-line'
+  '^': 'vim-mode:move-to-first-character-of-line'
+  '$': 'vim-mode:move-to-last-character-of-line'
+  '-': 'vim-mode:move-to-first-character-of-line-up'
+  '+': 'vim-mode:move-to-first-character-of-line-down'
+  'enter': 'editor:newline'
+  'g g': 'vim-mode:move-to-start-of-file'
+  'U': 'core:page-up'
+  'E': 'core:page-down'
+  'ctrl-e': 'vim-mode:scroll-down'
+  'ctrl-u': 'vim-mode:scroll-up'
+  'G': 'vim-mode:move-to-line'
+  'j j': 'vim-mode:move-to-top-of-screen'
+  'j h': 'vim-mode:move-to-middle-of-screen'
+  'j k': 'vim-mode:move-to-bottom-of-screen'
+
+  'd': 'vim-mode:delete'
+  'D': 'vim-mode:delete-to-last-character-of-line'
+  'w': 'vim-mode:change'
+  'W': 'vim-mode:change-to-last-character-of-line'
+  'R': 'vim-mode:substitute-line'
+  'r': 'vim-mode:replace'
+  'S': 'vim-mode:insert-at-beginning-of-line'
+  '>': 'vim-mode:indent'
+  '<': 'vim-mode:outdent'
+  '=': 'vim-mode:auto-indent'
+  'J': 'vim-mode:join'
+
+  'c': 'vim-mode:yank'
+  'C': 'vim-mode:yank-line'
+  'V': 'vim-mode:put-before'
+  'v': 'vim-mode:put-after'
+
+  'ctrl-w ctrl-h': 'vim-mode:focus-pane-view-on-left'
+  'ctrl-w h': 'vim-mode:focus-pane-view-on-left'
+  'ctrl-w left': 'window:focus-pane-on-left'
+  'ctrl-w ctrl-l': 'vim-mode:focus-pane-view-on-right'
+  'ctrl-w l': 'vim-mode:focus-pane-view-on-right'
+  'ctrl-w right': 'window:focus-pane-on-right'
+  'ctrl-w ctrl-k': 'vim-mode:focus-pane-view-above'
+  'ctrl-w k': 'vim-mode:focus-pane-view-above'
+  'ctrl-w up': 'window:focus-pane-above'
+  'ctrl-w ctrl-j': 'vim-mode:focus-pane-view-below'
+  'ctrl-w j': 'vim-mode:focus-pane-view-below'
+  'ctrl-w down': 'window:focus-pane-below'
+  'ctrl-w ctrl-w': 'window:focus-next-pane'
+  'ctrl-w w': 'window:focus-next-pane'
+  'ctrl-w ctrl-p': 'vim-mode:focus-previous-pane-view'
+  'ctrl-w p': 'window:focus-previous-pane'
+  'ctrl-w ctrl-v': 'pane:split-right'
+  'ctrl-w v': 'pane:split-right'
+  'ctrl-w ctrl-s': 'pane:split-down'
+  'ctrl-w s': 'pane:split-down'
+  'ctrl-w ctrl-c': 'pane:close'
+  'ctrl-w c': 'pane:close'
+  'ctrl-w ctrl-q': 'core:close'
+  'ctrl-w q': 'core:close'
+  'g t': 'pane:show-next-item'
+  'g T': 'pane:show-previous-item'
+
+  'm': 'vim-mode:mark'
+  '`': 'vim-mode:move-to-mark-literal'
+  '\'': 'vim-mode:move-to-mark'
+
+  'f': 'vim-mode:find'
+  'F': 'vim-mode:find-backwards'
+  'p': 'vim-mode:till'
+  'P': 'vim-mode:till-backwards'
+
+  '/': 'vim-mode:search'
+  '?': 'vim-mode:reverse-search'
+  '*': 'vim-mode:search-current-word'
+  '#': 'vim-mode:reverse-search-current-word'
+  'k': 'vim-mode:repeat-search'
+  'K': 'vim-mode:repeat-search-backwards'
+
+  '%': 'vim-mode:bracket-matching-motion'
+
+  '1': 'vim-mode:repeat-prefix'
+  '2': 'vim-mode:repeat-prefix'
+  '3': 'vim-mode:repeat-prefix'
+  '4': 'vim-mode:repeat-prefix'
+  '5': 'vim-mode:repeat-prefix'
+  '6': 'vim-mode:repeat-prefix'
+  '7': 'vim-mode:repeat-prefix'
+  '8': 'vim-mode:repeat-prefix'
+  '9': 'vim-mode:repeat-prefix'
+
+'.editor.vim-mode.command-mode':
+  's': 'vim-mode:activate-insert-mode'
+  'a': 'vim-mode:activate-characterwise-visual-mode'
+  'A': 'vim-mode:activate-linewise-visual-mode'
+  'ctrl-v': 'vim-mode:activate-blockwise-visual-mode'
+  'escape': 'vim-mode:reset-command-mode'
+  'ctrl-c': 'vim-mode:reset-command-mode'
+  'ctrl-[': 'vim-mode:reset-command-mode'
+
+  'z': 'core:undo'
+  'Z': 'core:redo'
+
+  'O': 'vim-mode:insert-above-with-newline'
+  'o': 'vim-mode:insert-below-with-newline'
+  't': 'vim-mode:insert-after'
+  'T': 'vim-mode:insert-after-end-of-line'
+  'x': 'vim-mode:delete-right'
+  'X': 'vim-mode:delete-left'
+  '~': 'vim-mode:toggle-case'
+  'r': 'vim-mode:substitute'
+  '.': 'vim-mode:repeat'
+
+  'ctrl-]': 'symbols-view:go-to-declaration'
+  'ctrl-T': 'symbols-view:return-from-declaration'
+
+  '" a': 'vim-mode:register-prefix'
+  '" b': 'vim-mode:register-prefix'
+  '" c': 'vim-mode:register-prefix'
+  '" d': 'vim-mode:register-prefix'
+  '" e': 'vim-mode:register-prefix'
+  '" f': 'vim-mode:register-prefix'
+  '" g': 'vim-mode:register-prefix'
+  '" h': 'vim-mode:register-prefix'
+  '" i': 'vim-mode:register-prefix'
+  '" j': 'vim-mode:register-prefix'
+  '" k': 'vim-mode:register-prefix'
+  '" l': 'vim-mode:register-prefix'
+  '" m': 'vim-mode:register-prefix'
+  '" n': 'vim-mode:register-prefix'
+  '" o': 'vim-mode:register-prefix'
+  '" p': 'vim-mode:register-prefix'
+  '" q': 'vim-mode:register-prefix'
+  '" r': 'vim-mode:register-prefix'
+  '" s': 'vim-mode:register-prefix'
+  '" t': 'vim-mode:register-prefix'
+  '" u': 'vim-mode:register-prefix'
+  '" v': 'vim-mode:register-prefix'
+  '" w': 'vim-mode:register-prefix'
+  '" x': 'vim-mode:register-prefix'
+  '" y': 'vim-mode:register-prefix'
+  '" z': 'vim-mode:register-prefix'
+  '" *': 'vim-mode:register-prefix'
+  '" +': 'vim-mode:register-prefix'
+  '" %': 'vim-mode:register-prefix'
+  '" _': 'vim-mode:register-prefix'
+
+'.editor.vim-mode.operator-pending-mode, .editor.vim-mode.visual-mode':
+  'i w': 'vim-mode:select-inside-word'
+  'i "': 'vim-mode:select-inside-double-quotes'
+  'i \'': 'vim-mode:select-inside-single-quotes'
+  'i {': 'vim-mode:select-inside-curly-brackets'
+  'i <': 'vim-mode:select-inside-angle-brackets'
+  'i (': 'vim-mode:select-inside-parentheses'
+
+'.editor.vim-mode.visual-mode':
+  'x': 'vim-mode:delete'
+  's': 'vim-mode:change'
