@@ -19,7 +19,7 @@
 
 '.editor.vim-mode:not(.command-mode)':
   'ctrl-e': 'emmet:expand-abbreviation'
-  'ctrl-e': 'emmet:expand-abbreviation'
+  'ctrl-w': 'core:close'
 
   'enter': 'vim-mode:activate-command-mode'
   'ctrl-[': 'vim-mode:activate-command-mode'
@@ -39,8 +39,10 @@
   'space g l': 'git-plus:pull'
   'space g p': 'git-plus:push'
   'space g b': 'git-blame:toggle'
+  'space g a': 'git-plus:add'
   'ctrl-h': 'find-and-replace:show-replace'
   'ctrl-f': 'find-and-replace:show'
+  'ctrl-w': 'core:close'
 
   'n': 'vim-mode:move-left'
   'left': 'vim-mode:move-left'
