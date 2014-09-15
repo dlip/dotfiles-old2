@@ -138,6 +138,11 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle '907th/vim-auto-save'
 NeoBundle 'joonty/vdebug'
 NeoBundle 'maksimr/vim-jsbeautify'
+NeoBundle 'mattn/calendar-vim'
+NeoBundle 'vimwiki/vimwiki' "{{{
+  let g:vimwiki_list = [{'path': 'x:/', 'path_html': 'x:/_html/'}]
+"}}}
+
 
 " Color schemes
 "NeoBundle 'altercation/vim-colors-solarized'
