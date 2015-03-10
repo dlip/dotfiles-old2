@@ -1,0 +1,215 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => VIM Options
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+syntax on           " Enable syntax highlighting
+set so=7            " Set 7 lines to the curors - when moving vertical..
+set history=300     " Sets how many lines of history VIM has to remember
+set nocompatible    " new vim mode
+set autoread        " Set to auto read when a file is changed from the outside
+set wildmenu        " Turn on WiLd menu
+set wildmode=list:longest,full
+set ruler           " Always show current position
+set cmdheight=2     " The commandbar height
+set ignorecase      " Ignore case when searching
+set hlsearch        " Highlight search things
+set hid             " Change buffer - without saving
+set incsearch       " Make search act like search in modern browsers
+set magic           " Set magic on, for regular expressions
+set showmatch       " Show matching bracets when text indicator is over them
+set mat=1           " How many tenths of a second to blink
+set tabstop=2
+set smarttab
+set shiftwidth=2
+set autoindent
+set expandtab
+set backspace=indent,eol,start
+
+" Turn backup off, since most stuff is in SVN, git anyway...
+set nobackup
+set nowb
+set noswapfile
+
+let mapleader = ","
+let g:mapleader = ","
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Key Bindings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Q
+nnoremap q q
+nnoremap Q @q
+
+" W
+nnoremap w "_c
+vnoremap w "_c
+nnoremap W "_C
+onoremap w iw
+
+" F
+nnoremap f f
+onoremap f f
+
+" P
+noremap p ;
+noremap P ,
+
+" G
+nnoremap g g
+
+" ----------------------------------------------
+
+" A
+nnoremap a v
+nnoremap A V
+nnoremap ar viw
+
+" R
+nnoremap r r
+
+" S
+nnoremap s i
+nnoremap S I
+vnoremap s gS
+
+" T
+nnoremap t a
+nnoremap T A
+inoremap <C-t> <esc>
+vnoremap <C-t> <esc>
+
+" D
+nnoremap d d
+
+" ----------------------------------------------
+
+" Z
+nnoremap z u
+nnoremap Z <C-r>
+
+" X
+nnoremap x "_x
+
+" C
+nnoremap c y
+onoremap c y
+vnoremap c y
+nnoremap C y$
+nnoremap <silent> <C-c> :nohlsearch<CR>
+vnoremap <C-c> "*y
+cnoremap <C-c> <C-y>
+
+" V
+nnoremap v p
+nnoremap V P
+vnoremap v "_dP
+vnoremap V P
+nnoremap <C-v> "*p
+inoremap <C-v> <esc>]pa
+cnoremap <C-v> <C-r>
+
+" B
+onoremap B iB
+nnoremap b %
+onoremap b %
+
+
+" ----------------------------------------------
+" ----------------------------------------------
+
+" J
+
+" L
+noremap l b
+noremap L zk
+nnoremap + zr
+
+" U
+nnoremap u k
+vnoremap u k
+nnoremap U 5k
+vnoremap U 5k
+inoremap <c-u> <esc>bgUeea
+vnoremap <c-u> U
+nnoremap <C-u> <C-W>k
+
+" Y
+noremap y w
+noremap Y zj
+vnoremap y e
+
+" ----------------------------------------------
+
+" H
+nnoremap h za
+nnoremap H zR
+
+nnoremap <c-h> zt
+
+" N
+nnoremap n h
+vnoremap n h
+noremap N ^
+" inoremap <C-n> <C-p>
+nnoremap <C-n> <C-W>h
+inoremap <C-n> <bs>
+
+" E
+nnoremap e j
+vnoremap e j
+nnoremap E 5j
+vnoremap E 5j 
+nnoremap <C-e> <C-W>j
+inoremap <C-e> <cr>
+inoremap <C-p> <cr>
+
+" I
+nnoremap i l
+vnoremap i l
+noremap I $
+noremap <C-i> <C-W>l
+
+" Indentation text motion
+omap ii iB
+omap ai aB
+
+" O
+nnoremap o o
+
+" '
+
+" ----------------------------------------------
+
+" K
+nnoremap k n
+nnoremap K N
+vnoremap k n
+vnoremap K N
+
+" M
+noremap m m
+nnoremap - zm
+
+" ,
+nmap <silent> <leader><leader> <C-^>
+
+" .
+nnoremap . .
+
+" /
+
+" ----------------------------------------------
+" ----------------------------------------------
+
+" Backspace
+inoremap <C-BS> <C-w>
+
+" `
+nnoremap ` '
+
+";
+nnoremap ; :
+vnoremap ; :
+
+":
+nnoremap : ;
+vnoremap : ;
