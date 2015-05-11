@@ -10,6 +10,11 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 let mapleader = "\<space>"
 let g:mapleader = "\<space>"
 
+if has("win32")
+  set shell=cmd
+  set shellcmdflag=/c
+endif
+
 " functions {{{
   function! s:get_cache_dir(suffix) "{{{
     return resolve(expand('~/.vim/.cache/' . a:suffix))
@@ -71,7 +76,6 @@ NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'tpope/vim-unimpaired'
 
 " Snippets
-NeoBundle 'SirVer/ultisnips'
 NeoBundle 'honza/vim-snippets'
 
 " File types
@@ -140,7 +144,8 @@ NeoBundle 'joonty/vdebug'
 NeoBundle 'maksimr/vim-jsbeautify'
 NeoBundle 'mattn/calendar-vim'
 NeoBundle 'vimwiki/vimwiki' "{{{
-  let g:vimwiki_list = [{'path': 'x:/', 'path_html': 'x:/_html/'}]
+  let g:vimwiki_list = [{'path': '~/Dropbox/Wiki/', 'ext': '.md', 'path_html': '~/Dropbox/Wiki_html/'}]
+  nnoremap <silent> <leader>C :Calendar<CR>
 "}}}
 
 
@@ -221,6 +226,11 @@ set noswapfile
 
 
 " Set font according to system
+if has("win32")
+  set guifont=Consolas:h12 
+  set guifontwide=MingLiU:h12 "For windows to display mixed character sets
+  set encoding=utf-8
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Leader key
@@ -246,10 +256,10 @@ set virtualedit=onemore
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 set showmode
-vnoremap <Enter> <Esc>gV
-inoremap <Enter> <ESC>`^
-nnoremap <Enter> i<Enter><ESC>
-nnoremap <S-Enter> O<ESC>
+"vnoremap <Enter> <Esc>gV
+"inoremap <Enter> <ESC>`^
+"nnoremap <Enter> i<Enter><ESC>
+"nnoremap <S-Enter> O<ESC>
 
 " Comfortable command
 nnoremap ; :
@@ -327,12 +337,22 @@ highlight multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
 highlight link multiple_cursors_visual Visual
 "let g:multi_cursor_quit_key='<Tab>'
 
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
 "ctrlp
 "let g:ctrlp_working_path_mode = 0
+
+" My todo
+"o thing
+"o stuff
+"  o subtask
+"  o another
+"odont match
+"  odont match
+nnoremap <silent> <leader>t :vimgrep /^\(\s*\)\=o\s/ ./**/*.md <CR> :copen <CR>
+nnoremap <silent> <leader>1 :vimgrep /^\(\s*\)\=o\s1/ ./**/*.md <CR> :copen <CR>
+nnoremap <silent> <leader>2 :vimgrep /^\(\s*\)\=o\s2/ ./**/*.md <CR> :copen <CR>
+nnoremap <silent> <leader>3 :vimgrep /^\(\s*\)\=o\s3/ ./**/*.md <CR> :copen <CR>
+nnoremap <silent> <leader>4 :vimgrep /^\(\s*\)\=o\s4/ ./**/*.md <CR> :copen <CR>
+nnoremap <silent> <leader>5 :vimgrep /^\(\s*\)\=o\s5/ ./**/*.md <CR> :copen <CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
