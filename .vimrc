@@ -115,7 +115,7 @@ NeoBundle 'scrooloose/nerdcommenter'
 
 " File browsing
 NeoBundleLazy 'scrooloose/nerdtree', {'autoload':{'commands':['NERDTreeToggle','NERDTreeFind']}} "{{{
-  let NERDTreeShowHidden=1
+  let NERDTreeShowHidden=0
   let NERDTreeQuitOnOpen=1
   let NERDTreeShowLineNumbers=0
   let NERDTreeChDirMode=0
@@ -144,13 +144,13 @@ NeoBundle 'joonty/vdebug'
 NeoBundle 'maksimr/vim-jsbeautify'
 NeoBundle 'mattn/calendar-vim'
 NeoBundle 'vimwiki/vimwiki' "{{{
-  let g:vimwiki_list = [{'path': '~/Dropbox/Wiki/', 'ext': '.md', 'path_html': '~/Dropbox/Wiki_html/'}]
+  let g:vimwiki_list = [{'path': '~/Dropbox/Wiki/', 'syntax': 'markdown', 'ext': '.md'}]
   nnoremap <silent> <leader>C :Calendar<CR>
 "}}}
 
 
 " Color schemes
-"NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'altercation/vim-colors-solarized'
 "NeoBundle 'croaky/vim-colors-github'
 NeoBundle 'jonathanfilip/vim-lucius'
 "NeoBundle 'tpope/vim-vividchalk'
@@ -160,6 +160,7 @@ NeoBundle 'jonathanfilip/vim-lucius'
 "NeoBundle 'chriskempson/base16-vim'
 "NeoBundle 'w0ng/vim-hybrid'
 "NeoBundle 'sjl/badwolf'
+"NeoBundle 'jnurmine/Zenburn'
 "NeoBundle 'zeis/vim-kolor' "{{{
   "let g:kolor_underlined=1
 ""}}}
@@ -189,7 +190,7 @@ if has("gui_running")
 endif
 
 set background=dark
-colorscheme lucius
+colorscheme solarized
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM Options
@@ -271,7 +272,6 @@ nnoremap <silent>, :wa<cr>
 " New colemak mappings
 " Why did he map r to i?
 " onoremap iw iw|      " inner word
-nnoremap J Jx
 
 " Change next word to end of word in visual mode
 "vnoremap y e
@@ -347,12 +347,33 @@ highlight link multiple_cursors_visual Visual
 "  o another
 "odont match
 "  odont match
-nnoremap <silent> <leader>t :vimgrep /^\(\s*\)\=o\s/ ./**/*.md <CR> :copen <CR>
-nnoremap <silent> <leader>1 :vimgrep /^\(\s*\)\=o\s1/ ./**/*.md <CR> :copen <CR>
-nnoremap <silent> <leader>2 :vimgrep /^\(\s*\)\=o\s2/ ./**/*.md <CR> :copen <CR>
-nnoremap <silent> <leader>3 :vimgrep /^\(\s*\)\=o\s3/ ./**/*.md <CR> :copen <CR>
-nnoremap <silent> <leader>4 :vimgrep /^\(\s*\)\=o\s4/ ./**/*.md <CR> :copen <CR>
-nnoremap <silent> <leader>5 :vimgrep /^\(\s*\)\=o\s5/ ./**/*.md <CR> :copen <CR>
+"nnoremap <silent> <leader>t :vimgrep /^\(\s*\)\=-\s/ ./**/*.md <CR> :copen <CR>
+"nnoremap <silent> <leader>1 :vimgrep /^\(\s*\)\=-\s1/ ./**/*.md <CR> :copen <CR>
+"nnoremap <silent> <leader>2 :vimgrep /^\(\s*\)\=-\s2/ ./**/*.md <CR> :copen <CR>
+"nnoremap <silent> <leader>3 :vimgrep /^\(\s*\)\=-\s3/ ./**/*.md <CR> :copen <CR>
+"nnoremap <silent> <leader>4 :vimgrep /^\(\s*\)\=-\s4/ ./**/*.md <CR> :copen <CR>
+"nnoremap <silent> <leader>5 :vimgrep /^\(\s*\)\=-\s5/ ./**/*.md <CR> :copen <CR>
+
+let g:todoPath = 'todo/calendar/'
+function! TodoToday()
+  let l:fname = g:todoPath . strftime('%Y-%m-%d') . '.diff'
+  :execute 'edit' l:fname
+endfunction
+
+function! TodoSoon()
+  let l:date = input('Enter date:', strftime('%Y-%m-%d'))
+  let l:fname = g:todoPath . l:date . '.diff'
+  if filereadable(l:fname)
+    :execute 'edit ' . l:fname
+  else
+    :execute 'edit ' . g:todoPath . 'template.diff'
+    :execute 'saveas ' . l:fname
+    :execute 'edit ' . l:fname
+  endif
+endfunction
+
+nnoremap <Leader>t :<C-U>call TodoToday()<CR>
+nnoremap <Leader>T :<C-U>call TodoSoon()<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
