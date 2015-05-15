@@ -139,15 +139,18 @@ NeoBundleLazy 'scrooloose/nerdtree', {'autoload':{'commands':['NERDTreeToggle','
 NeoBundle 'scrooloose/syntastic'
 
 " Misc
-NeoBundle '907th/vim-auto-save'
+NeoBundle '907th/vim-auto-save' "{{{
+  let g:auto_save = 1  " enable AutoSave on Vim startup
+  let g:auto_save_in_insert_mode = 0
+"}}}
 NeoBundle 'joonty/vdebug'
 NeoBundle 'maksimr/vim-jsbeautify'
 NeoBundle 'mattn/calendar-vim'
 NeoBundle 'vimwiki/vimwiki' "{{{
   let g:vimwiki_list = [{'path': '~/Dropbox/Wiki/', 'syntax': 'markdown', 'ext': '.md'}]
   nnoremap <silent> <leader>C :Calendar<CR>
+  nnoremap <silent> <Leader>t :VimwikiMakeDiaryNote<CR>
 "}}}
-
 
 " Color schemes
 NeoBundle 'altercation/vim-colors-solarized'
@@ -189,7 +192,7 @@ if has("gui_running")
   endif
 endif
 
-set background=dark
+set background=light
 colorscheme solarized
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -219,6 +222,7 @@ set expandtab
 set backspace=indent,eol,start
 set nostartofline  " Avoid cursor moving to start of line when switching buffers
 set nofoldenable    " disable folding
+set nowrap
 
 " Turn backup off, since most stuff is in SVN, git anyway...
 set nobackup
@@ -261,6 +265,7 @@ set showmode
 "inoremap <Enter> <ESC>`^
 "nnoremap <Enter> i<Enter><ESC>
 "nnoremap <S-Enter> O<ESC>
+:inoremap <S-CR> <Esc>
 
 " Comfortable command
 nnoremap ; :
@@ -268,6 +273,9 @@ vnoremap ; :
 
 " Lazy save
 nnoremap <silent>, :wa<cr>
+
+"Date
+nnoremap <F5> "=strftime("%Y-%m-%d")<CR>P
 
 " New colemak mappings
 " Why did he map r to i?
@@ -329,52 +337,40 @@ let b:surround_{char2nr('-')} = "<% \r %>"
 let g:user_emmet_leader_key = '<C-o>'
 imap <C-e> <C-o>,
 
-" Autosave
-let g:auto_save = 1  " enable AutoSave on Vim startup
 
 " Multiple cursors
 highlight multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
 highlight link multiple_cursors_visual Visual
 "let g:multi_cursor_quit_key='<Tab>'
 
-"ctrlp
-"let g:ctrlp_working_path_mode = 0
-
 " My todo
-"o thing
-"o stuff
-"  o subtask
-"  o another
-"odont match
-"  odont match
-"nnoremap <silent> <leader>t :vimgrep /^\(\s*\)\=-\s/ ./**/*.md <CR> :copen <CR>
-"nnoremap <silent> <leader>1 :vimgrep /^\(\s*\)\=-\s1/ ./**/*.md <CR> :copen <CR>
-"nnoremap <silent> <leader>2 :vimgrep /^\(\s*\)\=-\s2/ ./**/*.md <CR> :copen <CR>
-"nnoremap <silent> <leader>3 :vimgrep /^\(\s*\)\=-\s3/ ./**/*.md <CR> :copen <CR>
-"nnoremap <silent> <leader>4 :vimgrep /^\(\s*\)\=-\s4/ ./**/*.md <CR> :copen <CR>
-"nnoremap <silent> <leader>5 :vimgrep /^\(\s*\)\=-\s5/ ./**/*.md <CR> :copen <CR>
+"- thing
+"- stuff
+"  - subtask
+"  - another
+"-dont match
+"  -dont match
+nnoremap <silent> <leader>- :vimgrep /^\(\s*\)\=-\s/ ./todo/**/*.md <CR> :copen <CR>
+nnoremap <silent> <leader>1 :vimgrep /^\(\s*\)\=-\s1/ ./todo/**/*.md <CR> :copen <CR>
+nnoremap <silent> <leader>2 :vimgrep /^\(\s*\)\=-\s2/ ./todo/**/*.md <CR> :copen <CR>
+nnoremap <silent> <leader>3 :vimgrep /^\(\s*\)\=-\s3/ ./todo/**/*.md <CR> :copen <CR>
+nnoremap <silent> <leader>4 :vimgrep /^\(\s*\)\=-\s4/ ./todo/**/*.md <CR> :copen <CR>
+nnoremap <silent> <leader>5 :vimgrep /^\(\s*\)\=-\s5/ ./todo/**/*.md <CR> :copen <CR>
+nnoremap <F4> $"=expand("%:t:r")<CR>p
 
-let g:todoPath = 'todo/calendar/'
-function! TodoToday()
-  let l:fname = g:todoPath . strftime('%Y-%m-%d') . '.diff'
-  :execute 'edit' l:fname
+function! TodoMove()
+  let l:tag = expand("%:t:r")
+  :normal! dd
+  :execute 'VimwikiMakeDiaryNote'
+  :normal! G
+  :put
+  :put =l:tag
+  :normal! kJ
+  :execute 'edit #'
 endfunction
 
-function! TodoSoon()
-  let l:date = input('Enter date:', strftime('%Y-%m-%d'))
-  let l:fname = g:todoPath . l:date . '.diff'
-  if filereadable(l:fname)
-    :execute 'edit ' . l:fname
-  else
-    :execute 'edit ' . g:todoPath . 'template.diff'
-    :execute 'saveas ' . l:fname
-    :execute 'edit ' . l:fname
-  endif
-endfunction
-
-nnoremap <Leader>t :<C-U>call TodoToday()<CR>
-nnoremap <Leader>T :<C-U>call TodoSoon()<CR>
-
+"command GREP :execute 'vimgrep '.expand('<cword>').' '.expand('%') | :copen | :cc
+nnoremap <Leader>, :<C-U>call TodoMove()<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Commands
