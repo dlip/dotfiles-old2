@@ -10,6 +10,9 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 let mapleader = "\<space>"
 let g:mapleader = "\<space>"
 
+let maplocalleader = ","
+let g:maplocalleader = ","
+
 if has("win32")
   set shell=cmd
   set shellcmdflag=/c
@@ -138,6 +141,18 @@ NeoBundleLazy 'scrooloose/nerdtree', {'autoload':{'commands':['NERDTreeToggle','
 " Syntax checking
 NeoBundle 'scrooloose/syntastic'
 
+" Productivity
+NeoBundle 'mattn/calendar-vim'
+"NeoBundle 'vimwiki/vimwiki' "{{{
+  "let g:vimwiki_list = [{'path': '~/Dropbox/Wiki/', 'syntax': 'markdown', 'ext': '.md'}]
+  "nnoremap <silent> <leader>C :Calendar<CR>
+  "nnoremap <silent> <Leader>t :VimwikiMakeDiaryNote<CR>
+""}}}
+NeoBundle 'jceb/vim-orgmode'
+NeoBundle 'vim-scripts/workflowish'
+"NeoBundle 'vimoutliner/vimoutliner'
+"NeoBundle 'vim-scripts/VOoM'
+
 " Misc
 NeoBundle '907th/vim-auto-save' "{{{
   let g:auto_save = 1  " enable AutoSave on Vim startup
@@ -145,12 +160,7 @@ NeoBundle '907th/vim-auto-save' "{{{
 "}}}
 NeoBundle 'joonty/vdebug'
 NeoBundle 'maksimr/vim-jsbeautify'
-NeoBundle 'mattn/calendar-vim'
-NeoBundle 'vimwiki/vimwiki' "{{{
-  let g:vimwiki_list = [{'path': '~/Dropbox/Wiki/', 'syntax': 'markdown', 'ext': '.md'}]
-  nnoremap <silent> <leader>C :Calendar<CR>
-  nnoremap <silent> <Leader>t :VimwikiMakeDiaryNote<CR>
-"}}}
+
 
 " Color schemes
 NeoBundle 'altercation/vim-colors-solarized'
@@ -192,8 +202,8 @@ if has("gui_running")
   endif
 endif
 
-set background=light
-colorscheme solarized
+set background=dark
+colorscheme lucius
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM Options
@@ -221,7 +231,6 @@ set autoindent
 set expandtab
 set backspace=indent,eol,start
 set nostartofline  " Avoid cursor moving to start of line when switching buffers
-set nofoldenable    " disable folding
 set nowrap
 
 " Turn backup off, since most stuff is in SVN, git anyway...
@@ -280,6 +289,9 @@ nnoremap <F5> "=strftime("%Y-%m-%d")<CR>P
 " New colemak mappings
 " Why did he map r to i?
 " onoremap iw iw|      " inner word
+nnoremap h z|xnoremap h z|
+nnoremap he zj|xnoremap he zj|
+nnoremap hu zk|xnoremap hu zk|
 
 " Change next word to end of word in visual mode
 "vnoremap y e
