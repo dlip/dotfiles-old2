@@ -28,12 +28,12 @@ endif
 NeoBundle 'dlip/vim-colemak'
 
 " Search
-NeoBundle 'Shougo/vimproc', { 'build': {
-  \   'windows': 'make -f make_mingw32.mak',
-  \   'cygwin': 'make -f make_cygwin.mak',
-  \   'mac': 'make -f make_mac.mak',
-  \   'unix': 'make -f make_unix.mak',
-\ } }
+"NeoBundle 'Shougo/vimproc', { 'build': {
+  "\   'windows': 'make -f make_mingw32.mak',
+  "\   'cygwin': 'make -f make_cygwin.mak',
+  "\   'mac': 'make -f make_mac.mak',
+  "\   'unix': 'make -f make_unix.mak',
+"\ } }
 
 NeoBundle 'Shougo/unite.vim' "{{{
   let bundle = neobundle#get('unite.vim')
@@ -381,8 +381,19 @@ function! TodoMove()
   :execute 'edit #'
 endfunction
 
+function! TodoSearch()
+  :normal! yiw
+  :execute 'NERDTreeClose'
+  let l:term = @"
+  let l:search = "\"+"
+  let l:search .= l:term . "\""
+  :echo l:search
+  :execute 'vimgrep' l:term './**/*.md' | :copen
+endfunction
+
 "command GREP :execute 'vimgrep '.expand('<cword>').' '.expand('%') | :copen | :cc
 nnoremap <Leader>, :<C-U>call TodoMove()<CR>
+nnoremap <Leader>8 :<C-U>call TodoSearch()<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Commands
