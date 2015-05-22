@@ -5,6 +5,7 @@
 /.vim/bundle
 !/.vim/bundle/neobundle.vim
 !/.oh-my-zsh
+!/.emacs.dane
 
 !/.bash
 !/.bashrc
@@ -18,3 +19,4 @@
 !/.lesskey
 !/.screenrc
 !/.vimrc
+!/.spacemacs

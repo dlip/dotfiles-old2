@@ -41,9 +41,47 @@
            "c" nil "mA" 'org-archive-subtree
            "o" nil "mC" 'evil-org-recompute-clocks
            "l" nil "mo" 'evil-org-open-links
-           "y" nil "mT" 'org-show-todo-tree)
+           "t" nil "mT" 'org-show-todo-tree)
       (evil-define-key 'normal evil-org-mode-map
-        "O" 'evil-open-above)
+        "O" 'evil-open-above
+        ;; TODO make colemak version of evil org mode
+        "H" 'org-todo
+        "t" 'evil-append
+        "T" 'evil-append-line
+        "gn" 'outline-up-heading
+        "gi" 'outline-previous-heading
+        "ge" (if (fboundp 'org-forward-same-level) ;to be backward compatible with older org version
+                 'org-forward-same-level
+               'org-forward-heading-same-level)
+        "gu" (if (fboundp 'org-backward-same-level)
+                 'org-backward-same-level
+               'org-backward-heading-same-level)
+        "L" 'org-beginning-of-line
+        "Y" 'org-end-of-line
+        )
+        (mapc (lambda (state)
+                (evil-define-key state evil-org-mode-map
+                  (kbd "M-i") 'org-metaright
+                  (kbd "M-n") 'org-metaleft
+                  (kbd "M-u") 'org-metaup
+                  (kbd "M-e") 'org-metadown
+                  (kbd "M-I") 'org-shiftmetaright
+                  (kbd "M-N") 'org-shiftmetaleft
+                  (kbd "M-U") 'org-shiftmetaup
+                  (kbd "M-E") 'org-shiftmetadown
+                  (kbd "M-o") '(lambda () (interactive)
+                                 (evil-org-eol-call
+                                  '(lambda()
+                                     (org-insert-heading)
+                                     (org-metaright))))
+                  (kbd "M-t") '(lambda () (interactive)
+                                 (evil-org-eol-call
+                                  '(lambda()
+                                     (org-insert-todo-heading nil)
+                                     (org-metaright))))
+                  ))
+              '(normal insert))
+
       (spacemacs|diminish evil-org-mode " ⓔ" " e"))))
 
 (defun org-colemak/init-org ()
@@ -118,8 +156,8 @@ Will work on both org-mode and any mode that accepts plain html."
 
       (eval-after-load "org-agenda"
         '(progn
-           (define-key org-agenda-mode-map "j" 'org-agenda-next-line)
-           (define-key org-agenda-mode-map "k" 'org-agenda-previous-line)
+           (define-key org-agenda-mode-map "u" 'org-agenda-next-line)
+           (define-key org-agenda-mode-map "e" 'org-agenda-previous-line)
            ;; Since we override SPC, let's make RET do that functionality
            (define-key org-agenda-mode-map
              (kbd "RET") 'org-agenda-show-and-scroll-up)
