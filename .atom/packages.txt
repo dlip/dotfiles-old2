@@ -8,3 +8,4 @@ vim-mode
 markdown-writer
 markdown-table-formatter
 navigate
+atom-fuzzy-grep

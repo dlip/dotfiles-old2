@@ -32,18 +32,19 @@ module.exports = WikiLink =
     return unless file = editor?.buffer.file
 
     selection = editor.getLastSelection()
+    selectionText = selection.getText()
 
-    date = new Date().toFormat('YYYY-MM-DD_HH24-MI-SS');
+    date = new Date().toFormat('YYYYMMDDHH24MISS');
 
     newFilename = "#{date}.md"
     newFilePath = path.join path.dirname(file.path), newFilename
 
-    selection.insertText("[#{selection.getText()}](#{newFilename})")
+    selection.insertText("[#{selectionText}](#{newFilename})")
 
-    fs.openSync(newFilePath, 'w')
-    fs.closeSync fs.openSync(newFilePath, 'w')
-
-    atom.workspace.open newFilePath
+    fs.writeFile newFilePath, "# #{selectionText}\n\n", (err) ->
+      throw err if err
+      console.log('It\'s saved!')
+      atom.workspace.open newFilePath, { initialLine: 2 }
 
     return
     console.log 'WikiLink was toggled!'

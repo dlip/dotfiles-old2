@@ -20,3 +20,5 @@
   "markdown-writer": {}
   "autocomplete-plus":
     confirmCompletion: "tab"
+  "atom-fuzzy-grep":
+    grepCommandString: "ack -i --nocolor --nogroup --column"
