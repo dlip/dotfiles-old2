@@ -1,5 +1,7 @@
 storage
-packages
+/packages/*
+!/packages/wiki-link
+node_modules
 compile-cache
 dev
 .npm
