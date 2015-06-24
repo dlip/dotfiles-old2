@@ -5,10 +5,18 @@
     showOnStartup: false
   core:
     themes: [
-      "atom-light-ui"
-      "atom-light-syntax"
+      "solarized-light-ui"
+      "solarized-light-syntax"
+    ]
+    disabledPackages: [
+      "emmet"
+      "color-picker"
     ]
   editor:
     invisibles: {}
-  "markdown-preview":
-    breakOnSingleNewline: true
+  "markdown-preview": {}
+  autosave:
+    enabled: true
+  "markdown-writer": {}
+  "autocomplete-plus":
+    confirmCompletion: "tab"

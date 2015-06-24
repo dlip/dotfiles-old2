@@ -6,3 +6,5 @@ git-grep
 git-plus
 vim-mode
 markdown-writer
+markdown-table-formatter
+navigate
