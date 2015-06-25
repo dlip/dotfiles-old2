@@ -8,5 +8,4 @@
 # For more detailed documentation see
 # https://atom.io/docs/latest/behind-atom-keymaps-in-depth
 'atom-workspace':
-  'alt-t': 'wiki-link:link-text'
-  'alt-r': 'wiki-link:link-date'
+  'alt-w': 'wiki-link:link-text'

@@ -12,7 +12,6 @@ module.exports = WikiLink =
 
     # Register command that toggles this view
     @subscriptions.add atom.commands.add 'atom-workspace', 'wiki-link:link-text': => @linkText()
-    @subscriptions.add atom.commands.add 'atom-workspace', 'wiki-link:link-date': => @linkDate()
 
   deactivate: ->
     @subscriptions.dispose()
@@ -42,7 +41,7 @@ module.exports = WikiLink =
     selection = editor.getLastSelection()
     selectionText = selection.getText()
 
-    @createLink selectionText
+    if selectionText.length == 0
+      selectionText = moment().format('YYYY-MM-DD ddd')
 
-  linkDate: ->
-    @createLink moment().format('YYYY-MM-DD ddd')
+    @createLink selectionText

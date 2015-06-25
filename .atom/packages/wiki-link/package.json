@@ -5,8 +5,7 @@
   "description": "A short description of your package",
   "keywords": [],
   "activationCommands": {
-    "atom-workspace": "wiki-link:toggle",
-    "atom-workspace": "wiki-link:link-date"
+    "atom-workspace": "wiki-link:link-text"
   },
   "repository": "https://github.com/atom/wiki-link",
   "license": "MIT",
