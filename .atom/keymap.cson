@@ -17,6 +17,10 @@
 #   'ctrl-p': 'core:move-down'
 #
 
+'.platform-win32 atom-text-editor:not(.mini)':
+  'alt-enter': 'navigate:forward'
+  'alt-backspace': 'navigate:back'
+
 '.editor.vim-mode:not(.command-mode)':
   'ctrl-e': 'emmet:expand-abbreviation'
   'ctrl-w': 'core:close'
