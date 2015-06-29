@@ -5,7 +5,10 @@
   "description": "A short description of your package",
   "keywords": [],
   "activationCommands": {
-    "atom-workspace": "wiki-link:link-text"
+    "atom-workspace": [
+      "wiki-link:link-text",
+      "wiki-link:generate-todo"
+    ]
   },
   "repository": "https://github.com/atom/wiki-link",
   "license": "MIT",
