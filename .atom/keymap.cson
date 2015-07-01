@@ -1,29 +1,3 @@
-# Your keymap
-#
-# Atom keymaps work similarly to stylesheets. Just as stylesheets use selectors
-# to apply styles to elements, Atom keymaps use selectors to associate
-# keystrokes with events in specific contexts.
-#
-# You can create a new keybinding in this file by typing "key" and then hitting
-# tab.
-#
-# Here's an example taken from Atom's built-in keymap:
-#
-# '.editor':
-#   'enter': 'editor:newline'
-#
-# '.workspace':
-#   'ctrl-P': 'core:move-up'
-#   'ctrl-p': 'core:move-down'
-#
-
-'atom-text-editor.vim-mode:not(.insert-mode)':
-  'space space': 'tab-switcher:previous'
-
-'.platform-win32 atom-text-editor:not(.mini)':
-  'alt-enter': 'navigate:forward'
-  'alt-backspace': 'navigate:back'
-
 ## Atom Vim Mode For Colemak (with space for leader)
 #+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+
 #|~ Case    |! ExtFlt> |@ PlyMcr· |#  <-=    |$  ->|    |% GoMatch |^  <--    |& Rep :s  |*  =->    |( |<-Sent |) Sent->| |_ LastLin |+ Next<-- |
@@ -62,13 +36,34 @@
   'ctrl-u': 'editor:delete-to-beginning-of-line'
 
 'atom-text-editor.vim-mode:not(.insert-mode)':
-  # Custom commands
+  # Plugin commands
   'j f': 'navigate:forward'
-  'j j': 'navigate:back'
+  'j w': 'navigate:back'
+  'g f': 'navigate:forward'
+  'g w': 'navigate:back'
   'h': 'editor:fold-current-row-toggle'
   'H': 'editor:fold-all-toggle'
 
-  # Standard Commands
+  # Leader commands
+  # B Fuzzy finder buffer
+  'space b': 'fuzzy-finder:toggle-buffer-finder'
+  # F Fuzzy finder file
+  'space f': 'fuzzy-finder:toggle-file-finder'
+  # P Command Palette
+  'space p': 'command-palette:toggle'
+  # W Window
+  'space w n': 'window:focus-pane-on-left'
+  'space w i': 'window:focus-pane-on-right'
+  'space w u': 'window:focus-pane-above'
+  'space w e': 'window:focus-pane-below'
+  'space w w': 'window:focus-next-pane'
+  'space w p': 'window:focus-previous-pane'
+  'space w v': 'pane:split-right'
+  'space w s': 'pane:split-down'
+  'space w c': 'pane:close'
+  'space w q': 'core:close'
+
+  # Basic Commands
   'n': 'vim-mode:move-left'
   'left': 'vim-mode:move-left'
   'backspace': 'core:move-left'
@@ -140,30 +135,6 @@
   'g u': 'vim-mode:lower-case'
   '~': 'vim-mode:toggle-case-now'
 
-  'space w space n': 'window:focus-pane-on-left'
-  'space w n': 'window:focus-pane-on-left'
-  'space w left': 'window:focus-pane-on-left'
-  'space w space i': 'window:focus-pane-on-right'
-  'space w i': 'window:focus-pane-on-right'
-  'space w right': 'window:focus-pane-on-right'
-  'space w space u': 'window:focus-pane-above'
-  'space w u': 'window:focus-pane-above'
-  'space w up': 'window:focus-pane-above'
-  'space w space e': 'window:focus-pane-below'
-  'space w e': 'window:focus-pane-below'
-  'space w down': 'window:focus-pane-below'
-  'space w space w': 'window:focus-next-pane'
-  'space w w': 'window:focus-next-pane'
-  'space w space p': 'window:focus-previous-pane'
-  'space w p': 'window:focus-previous-pane'
-  'space w space v': 'pane:split-right'
-  'space w v': 'pane:split-right'
-  'space w space s': 'pane:split-down'
-  'space w s': 'pane:split-down'
-  'space w space c': 'pane:close'
-  'space w c': 'pane:close'
-  'space w space q': 'core:close'
-  'space w q': 'core:close'
   'g t': 'pane:show-next-item'
   'g T': 'pane:show-previous-item'
 
@@ -218,8 +189,8 @@
   'ctrl-]': 'symbols-view:go-to-declaration'
   'ctrl-T': 'symbols-view:return-from-declaration'
 
-  'ctrl-a': 'vim-mode:increase'
-  'ctrl-x': 'vim-mode:decrease'
+  #'ctrl-a': 'vim-mode:increase'
+  #'ctrl-x': 'vim-mode:decrease'
 
   '" a': 'vim-mode:register-prefix'
   '" b': 'vim-mode:register-prefix'

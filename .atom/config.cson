@@ -23,4 +23,5 @@
     confirmCompletion: "tab"
   "atom-fuzzy-grep":
     grepCommandString: "ack -i --nocolor --nogroup --column"
-  "vim-mode": {}
+  "vim-mode":
+    useClipboardAsDefaultRegister: true
