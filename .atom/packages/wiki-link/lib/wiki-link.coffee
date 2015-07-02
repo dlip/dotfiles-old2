@@ -51,7 +51,7 @@ module.exports = WikiLink =
     return unless editor = atom.workspace.getActiveTextEditor()
     return unless file = editor?.buffer.file
     todoRegex = /\s*(- \[ \] !.*)/
-    todoFilename = '3-todo.md'
+    todoFilename = '03-todo.md'
 
     filePath = path.dirname(file.path)
     todoFilePath = path.join filePath, todoFilename
