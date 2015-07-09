@@ -62,6 +62,7 @@
   'space w s': 'pane:split-down'
   'space w c': 'pane:close'
   'space w q': 'core:close'
+  'space m m': 'editor:csv-to-markdown'
 
   # Basic Commands
   'n': 'vim-mode:move-left'
