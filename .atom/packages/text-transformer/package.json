@@ -3,10 +3,14 @@
   "main": "./lib/text-transformer",
   "version": "0.0.0",
   "description": "A short description of your package",
-  "keywords": [
-  ],
+  "keywords": [],
   "activationCommands": {
-    "atom-workspace": "text-transformer:csv-to-markdown"
+    "atom-workspace": [
+        "text-transformer:csv-to-markdown",
+        "text-transformer:html-sanitize",
+        "text-transformer:html-to-markdown",
+        "text-transformer:paste-html-to-sanitized-markdown"
+      ]
   },
   "repository": "https://github.com/atom/text-transformer",
   "license": "MIT",
@@ -14,5 +18,7 @@
     "atom": ">=1.0.0 <2.0.0"
   },
   "dependencies": {
+    "sanitize-html": "^1.7.0",
+    "to-markdown": "^1.2.1"
   }
 }

@@ -6,8 +6,20 @@
       'label': 'Text Transformer'
       'submenu': [
         {
-          'label': 'CSV to Markdown Table'
+          'label': 'CSV to Markdown'
           'command': 'text-transformer:csv-to-markdown'
+        }
+        {
+          'label': 'HTML Sanitize'
+          'command': 'text-transformer:html-sanitize'
+        }
+        {
+          'label': 'HTML to Markdown'
+          'command': 'text-transformer:html-to-markdown'
+        }
+        {
+          'label': 'Paste HTML to Sanitized Markdown'
+          'command': 'text-transformer:paste-html-to-sanitized-markdown'
         }
       ]
     ]
