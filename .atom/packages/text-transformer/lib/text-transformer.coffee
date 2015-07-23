@@ -61,4 +61,4 @@ module.exports = TextTransformer =
         'div': 'p'
 
   htmlToMarkdown: (text, eol) ->
-    toMarkdown text
+    toMarkdown text, gfm: true
