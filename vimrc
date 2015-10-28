@@ -35,64 +35,61 @@ NeoBundle 'dlip/vim-colemak'
   "\   'unix': 'make -f make_unix.mak',
 "\ } }
 
-NeoBundle 'Shougo/unite.vim' "{{{
-  let bundle = neobundle#get('unite.vim')
-  function! bundle.hooks.on_source(bundle)
-    call unite#filters#matcher_default#use(['matcher_fuzzy'])
-    call unite#filters#sorter_default#use(['sorter_rank'])
-    call unite#set_profile('files', 'smartcase', 1)
-    call unite#custom#source('line,outline','matchers','matcher_fuzzy')
-  endfunction
+" NeoBundle 'Shougo/unite.vim' "{{{
+"   let bundle = neobundle#get('unite.vim')
+"   function! bundle.hooks.on_source(bundle)
+"     call unite#filters#matcher_default#use(['matcher_fuzzy'])
+"     call unite#filters#sorter_default#use(['sorter_rank'])
+"     call unite#set_profile('files', 'smartcase', 1)
+"     call unite#custom#source('line,outline','matchers','matcher_fuzzy')
+"   endfunction
 
-  function! s:unite_settings()
-    nmap <buffer> Q <plug>(unite_exit)
-    nmap <buffer> <esc> <plug>(unite_exit)
-    imap <buffer> <esc> <plug>(unite_exit)
-  endfunction
-  autocmd FileType unite call s:unite_settings()
-
-  let g:unite_data_directory=s:get_cache_dir('unite')
-  let g:unite_enable_start_insert=1
-  let g:unite_source_history_yank_enable=1
-  let g:unite_source_rec_max_cache_files=50000
-  let g:unite_prompt='» '
-  nmap <space> [unite]
-  nnoremap [unite] <nop>
-
-  nnoremap <silent> [unite]p :<C-u>Unite -toggle -auto-resize -buffer-name=mixed file_rec/async:! buffer file_mru bookmark<cr><c-u>
-  nnoremap <silent> [unite]f :<C-u>Unite -toggle -auto-resize -buffer-name=files file_rec/async:!<cr><c-u>
-  nnoremap <silent> [unite]m :<C-u>Unite -buffer-name=recent file_mru<cr>
-  nnoremap <silent> [unite]w :<C-u>Unite -buffer-name=gitgrep vcs_grep/git<cr>
-  nnoremap <silent> [unite]y :<C-u>Unite -buffer-name=yanks history/yank<cr>
-  nnoremap <silent> [unite]l :<C-u>Unite -auto-resize -buffer-name=line line<cr>
-  nnoremap <silent> [unite]b :<C-u>Unite -auto-resize -buffer-name=buffers buffer<cr>
-  nnoremap <silent> [unite]r :<C-u>Unite -no-quit -buffer-name=search grep:.<cr>
-  nnoremap <silent> [unite]' :<C-u>Unite -auto-resize -buffer-name=mappings mapping<cr>
-  nnoremap <silent> [unite]s :<C-u>Unite -quick-match buffer<cr>
+"   function! s:unite_settings()
+"     nmap <buffer> Q <plug>(unite_exit)
+"     nmap <buffer> <esc> <plug>(unite_exit)
+"     imap <buffer> <esc> <plug>(unite_exit)
+"   endfunction
+"   autocmd FileType unite call s:unite_settings()
+" 
+"   let g:unite_data_directory=s:get_cache_dir('unite')
+"   let g:unite_enable_start_insert=1
+"   let g:unite_source_history_yank_enable=1
+"   let g:unite_source_rec_max_cache_files=50000
+"   let g:unite_prompt='» '
+"   nmap <space> [unite]
+"   nnoremap [unite] <nop>
+" 
+"   nnoremap <silent> [unite]p :<C-u>Unite -toggle -auto-resize -buffer-name=mixed file_rec/async:! buffer file_mru bookmark<cr><c-u>
+"   nnoremap <silent> [unite]f :<C-u>Unite -toggle -auto-resize -buffer-name=files file_rec/async:!<cr><c-u>
+"   nnoremap <silent> [unite]m :<C-u>Unite -buffer-name=recent file_mru<cr>
+"   nnoremap <silent> [unite]w :<C-u>Unite -buffer-name=gitgrep vcs_grep/git<cr>
+"   nnoremap <silent> [unite]y :<C-u>Unite -buffer-name=yanks history/yank<cr>
+"   nnoremap <silent> [unite]l :<C-u>Unite -auto-resize -buffer-name=line line<cr>
+"   nnoremap <silent> [unite]b :<C-u>Unite -auto-resize -buffer-name=buffers buffer<cr>
+"   nnoremap <silent> [unite]r :<C-u>Unite -no-quit -buffer-name=search grep:.<cr>
+"   nnoremap <silent> [unite]' :<C-u>Unite -auto-resize -buffer-name=mappings mapping<cr>
+"   nnoremap <silent> [unite]s :<C-u>Unite -quick-match buffer<cr>
 "}}}
-NeoBundle 'Shougo/neomru.vim'
-NeoBundle 'sgur/unite-git_grep'
-NeoBundle 'rking/ag.vim'
+" NeoBundle 'Shougo/neomru.vim'
+" NeoBundle 'sgur/unite-git_grep'
+" NeoBundle 'rking/ag.vim'
 
 " Motions
-NeoBundle 'Lokaltog/vim-easymotion'
-NeoBundle 'tpope/vim-unimpaired'
+" NeoBundle 'Lokaltog/vim-easymotion'
+" NeoBundle 'tpope/vim-unimpaired'
 
 " Snippets
-NeoBundle 'honza/vim-snippets'
+" NeoBundle 'honza/vim-snippets'
 
 " File types
-NeoBundle 'digitaltoad/vim-jade'
-NeoBundle 'ecomba/vim-ruby-refactoring'
-NeoBundle 'ekalinin/Dockerfile.vim'
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'lepture/vim-jinja'
-NeoBundle 'mattn/emmet-vim'
-NeoBundle 'mustache/vim-mustache-handlebars'
-NeoBundle 'saltstack/salt-vim'
-NeoBundle 'tpope/vim-rails'
-NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'Valloric/MatchTagAlways'
+" NeoBundle 'ecomba/vim-ruby-refactoring'
+" NeoBundle 'ekalinin/Dockerfile.vim'
+" NeoBundle 'kchmck/vim-coffee-script'
+" NeoBundle 'lepture/vim-jinja'
+" NeoBundle 'mattn/emmet-vim'
+" NeoBundle 'tpope/vim-rails'
+" NeoBundle 'vim-ruby/vim-ruby'
+" NeoBundle 'Valloric/MatchTagAlways'
 
 " Version control
 "NeoBundle 'dlip/vim-fugitive'
@@ -111,7 +108,7 @@ NeoBundle 'tpope/vim-fugitive' "{{{
 
 " Text objects
 NeoBundle 'terryma/vim-multiple-cursors'
-NeoBundle 'tpope/vim-surround'
+" NeoBundle 'tpope/vim-surround'
 
 " Comments
 NeoBundle 'scrooloose/nerdcommenter'
@@ -139,17 +136,17 @@ NeoBundleLazy 'scrooloose/nerdtree', {'autoload':{'commands':['NERDTreeToggle','
 "}}}
 
 " Syntax checking
-NeoBundle 'scrooloose/syntastic'
+" NeoBundle 'scrooloose/syntastic'
 
 " Productivity
-NeoBundle 'mattn/calendar-vim'
+" NeoBundle 'mattn/calendar-vim'
 "NeoBundle 'vimwiki/vimwiki' "{{{
   "let g:vimwiki_list = [{'path': '~/Dropbox/Wiki/', 'syntax': 'markdown', 'ext': '.md'}]
   "nnoremap <silent> <leader>C :Calendar<CR>
   "nnoremap <silent> <Leader>t :VimwikiMakeDiaryNote<CR>
 ""}}}
-NeoBundle 'jceb/vim-orgmode'
-NeoBundle 'vim-scripts/workflowish'
+" NeoBundle 'jceb/vim-orgmode'
+" NeoBundle 'vim-scripts/workflowish'
 "NeoBundle 'vimoutliner/vimoutliner'
 "NeoBundle 'vim-scripts/VOoM'
 
@@ -158,8 +155,8 @@ NeoBundle '907th/vim-auto-save' "{{{
   let g:auto_save = 1  " enable AutoSave on Vim startup
   let g:auto_save_in_insert_mode = 0
 "}}}
-NeoBundle 'joonty/vdebug'
-NeoBundle 'maksimr/vim-jsbeautify'
+" NeoBundle 'joonty/vdebug'
+" NeoBundle 'maksimr/vim-jsbeautify'
 
 
 " Color schemes
