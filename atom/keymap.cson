@@ -19,6 +19,9 @@
 #PgUp/Dn HL |  Undo    |  Cut->   |  Copy >  |  Paste-> |  RepFndCh|  Next§-> |  Set Mk· |, (usr)·  |. Repeat  |/ Find§-> |
 #           +----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+
 
+'atom-text-editor':
+  'ctrl-J': 'editor:generate-journal'
+
 'atom-text-editor.vim-mode':
   'escape': 'vim-mode:reset-normal-mode'
   'ctrl-c': 'vim-mode:reset-normal-mode'
