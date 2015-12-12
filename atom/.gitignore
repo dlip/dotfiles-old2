@@ -2,6 +2,7 @@ storage
 /packages/*
 !/packages/wiki-link
 !/packages/text-transformer
+!/packages/todotxt
 node_modules
 compile-cache
 dev

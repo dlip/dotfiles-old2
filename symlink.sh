@@ -1,9 +1,9 @@
 #!/bin/bash
 set -e
 
-IGNORE=(symlink.sh)
+IGNORE=(symlink.sh gitconfig.extra.example)
 
-array_contains () { 
+array_contains () {
   local array="$1[@]"
   local seeking=$2
   local in=1
