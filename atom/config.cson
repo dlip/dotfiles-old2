@@ -4,24 +4,37 @@
   welcome:
     showOnStartup: false
   core:
-    themes: [
-      "solarized-light-ui"
-      "solarized-light-syntax"
-    ]
     disabledPackages: [
       "emmet"
       "color-picker"
     ]
   editor:
     invisibles: {}
-    fontSize: 20
+    fontSize: 16
+    tabType: "soft"
+    showInvisibles: true
   "markdown-preview": {}
   autosave:
     enabled: true
   "markdown-writer": {}
   "autocomplete-plus":
     confirmCompletion: "tab"
+    minimumWordLength: 2
   "atom-fuzzy-grep":
     grepCommandString: "ack -i --nocolor --nogroup --column"
   "vim-mode":
     useClipboardAsDefaultRegister: true
+  "php-cs-fixer":
+    executeOnSave: true
+    showInfoNotifications: true
+    executablePath: "/home/dane/.composer/vendor/bin/php-cs-fixer"
+  "terminal-plus":
+    core: {}
+    style:
+      animationSpeed: 0
+  minimap:
+    plugins:
+      "highlight-selected": true
+".html.php.text":
+  editor:
+    tabLength: 4

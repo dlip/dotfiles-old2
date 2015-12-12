@@ -95,18 +95,23 @@
   'ctrl-r %': 'vim-mode:insert-mode-put'
   'ctrl-r _': 'vim-mode:insert-mode-put'
   'ctrl-r "': 'vim-mode:insert-mode-put'
+  'ctrl-r escape': 'abort!'
 
 'atom-text-editor.vim-mode.replace-mode':
   'backspace': 'vim-mode:replace-mode-backspace'
 
+'atom-text-editor[data-grammar=\'source gfm\'].vim-mode:not(.insert-mode)':
+  'h': 'markdown-folder:cycle'
+  'H': 'markdown-folder:cycleall'
+
 'atom-text-editor.vim-mode:not(.insert-mode)':
   # Plugin commands
-  'j f': 'navigate:forward'
-  'j w': 'navigate:back'
   'g f': 'navigate:forward'
   'g w': 'navigate:back'
+  'g i': 'editor:open-wiki-index'
   'h': 'editor:fold-current-row-toggle'
   'H': 'editor:fold-all-toggle'
+  'space space': 'ctrl-last-tab:previous'
 
   # Leader commands
   # B Fuzzy finder buffer
@@ -116,10 +121,10 @@
   # P Command Palette
   'space p': 'command-palette:toggle'
   # W Window
-  'space w n': 'window:focus-pane-on-left'
-  'space w i': 'window:focus-pane-on-right'
-  'space w u': 'window:focus-pane-above'
-  'space w e': 'window:focus-pane-below'
+  'space n': 'window:focus-pane-on-left'
+  'space i': 'window:focus-pane-on-right'
+  'space u': 'window:focus-pane-above'
+  'space e': 'window:focus-pane-below'
   'space w w': 'window:focus-next-pane'
   'space w p': 'window:focus-previous-pane'
   'space w v': 'pane:split-right'
@@ -127,6 +132,16 @@
   'space w c': 'pane:close'
   'space w q': 'core:close'
   'space m m': 'editor:csv-to-markdown'
+
+  'space s': 'core:save'
+  'space y': 'pane:show-next-item'
+  'space l': 'pane:show-previous-item'
+  'space /': 'editor:toggle-line-comments-vi'
+
+  # T Todo
+  'space t u': 'todotxt:increase-priority'
+  'space t e': 'todotxt:decrease-priority'
+
 
   # Basic Commands
   'n': 'vim-mode:move-left'
@@ -146,6 +161,8 @@
   #'E': 'vim-mode:move-to-end-of-whole-word'
   'l': 'vim-mode:move-to-previous-word'
   'L': 'vim-mode:move-to-previous-whole-word'
+  ')': 'vim-mode:move-to-next-sentence',
+  '(': 'vim-mode:move-to-previous-sentence',
   '}': 'vim-mode:move-to-next-paragraph'
   '{': 'vim-mode:move-to-previous-paragraph'
   '0': 'vim-mode:move-to-beginning-of-line'
@@ -262,6 +279,7 @@
 
 'atom-text-editor.vim-mode.normal-mode':
   's': 'vim-mode:activate-insert-mode'
+  'insert': 'vim-mode:activate-insert-mode'
   'R': 'vim-mode:activate-replace-mode'
   'a': 'vim-mode:activate-characterwise-visual-mode'
   'A': 'vim-mode:activate-linewise-visual-mode'
@@ -344,8 +362,8 @@
 
 'atom-text-editor.vim-mode.operator-pending-mode, atom-text-editor.vim-mode.visual-mode':
   #inneR
-  'r W': 'vim-mode:select-inside-whole-word'
   'r w': 'vim-mode:select-inside-word'
+  'r W': 'vim-mode:select-inside-whole-word'
   'r "': 'vim-mode:select-inside-double-quotes'
   'r \'': 'vim-mode:select-inside-single-quotes'
   'r `': 'vim-mode:select-inside-back-ticks'
