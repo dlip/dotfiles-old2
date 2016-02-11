@@ -7,6 +7,12 @@
     disabledPackages: [
       "emmet"
       "color-picker"
+      "minimap"
+      "minimap-highlight-selected"
+    ]
+    themes: [
+      "one-light-ui"
+      "solarized-light-syntax"
     ]
   editor:
     invisibles: {}
@@ -18,8 +24,8 @@
     enabled: true
   "markdown-writer": {}
   "autocomplete-plus":
-    confirmCompletion: "tab"
     minimumWordLength: 2
+    confirmCompletion: "tab"
   "atom-fuzzy-grep":
     grepCommandString: "ack -i --nocolor --nogroup --column"
   "vim-mode":
@@ -35,6 +41,7 @@
   minimap:
     plugins:
       "highlight-selected": true
+  "imdone-atom": {}
 ".html.php.text":
   editor:
     tabLength: 4

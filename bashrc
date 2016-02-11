@@ -4,8 +4,8 @@ then
   export PATH=~/bin:$PATH
 
   if [ -x "$HOME/.rbenv/bin/rbenv" ] ; then
-    eval "$(rbenv init -)"
     export PATH=$HOME/.rbenv/bin:$PATH
+    eval "$(rbenv init -)"
   fi
 
   if [ -x "/usr/bin/lesskey" ] ; then
