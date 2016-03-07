@@ -2,5 +2,3 @@ vim-mode
 markdown-writer
 markdown-table-formatter
 linter
-linter-php
-php-cs-fixer

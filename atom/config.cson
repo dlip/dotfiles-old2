@@ -1,47 +1,52 @@
 "*":
-  "exception-reporting":
-    userId: "65ead1e5-ea6f-4f70-029f-b02d020ee67c"
-  welcome:
-    showOnStartup: false
+  "atom-fuzzy-grep":
+    grepCommandString: "ack -i --nocolor --nogroup --column"
+  "autocomplete-plus":
+    confirmCompletion: "tab"
+    minimumWordLength: 2
+  autosave:
+    enabled: true
   core:
     disabledPackages: [
       "emmet"
       "color-picker"
       "minimap"
       "minimap-highlight-selected"
+      "linter-php"
     ]
     themes: [
-      "one-light-ui"
-      "solarized-light-syntax"
+      "atom-dark-ui"
+      "base16-tomorrow-dark-theme"
     ]
   editor:
-    invisibles: {}
     fontSize: 16
-    tabType: "soft"
+    invisibles: {}
     showInvisibles: true
-  "markdown-preview": {}
-  autosave:
-    enabled: true
+    tabType: "soft"
+  "exception-reporting":
+    userId: "65ead1e5-ea6f-4f70-029f-b02d020ee67c"
+  "imdone-atom": {}
+  "markdown-preview":
+    useGitHubStyle: true
   "markdown-writer": {}
-  "autocomplete-plus":
-    minimumWordLength: 2
-    confirmCompletion: "tab"
-  "atom-fuzzy-grep":
-    grepCommandString: "ack -i --nocolor --nogroup --column"
-  "vim-mode":
-    useClipboardAsDefaultRegister: true
+  minimap:
+    plugins:
+      "highlight-selected": true
+  navigate: {}
+  nvatom:
+    directory: "C:\\Users\\danel\\Dropbox\\Notes"
   "php-cs-fixer":
+    executablePath: "/home/dane/.composer/vendor/bin/php-cs-fixer"
     executeOnSave: true
     showInfoNotifications: true
-    executablePath: "/home/dane/.composer/vendor/bin/php-cs-fixer"
   "terminal-plus":
     core: {}
     style:
       animationSpeed: 0
-  minimap:
-    plugins:
-      "highlight-selected": true
-  "imdone-atom": {}
+  "vim-mode":
+    useClipboardAsDefaultRegister: true
+  welcome:
+    showOnStartup: false
 ".html.php.text":
   editor:
     tabLength: 4

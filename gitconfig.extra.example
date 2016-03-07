@@ -7,3 +7,4 @@
 	autocrlf = input
   #windows
 	#autocrlf = true
+  #filemode = false

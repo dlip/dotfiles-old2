@@ -129,11 +129,9 @@
   'space w p': 'window:focus-previous-pane'
   'space w v': 'pane:split-right'
   'space w s': 'pane:split-down'
-  'space w c': 'pane:close'
-  'space w q': 'core:close'
+  'space w q': 'pane:close'
   'space m m': 'editor:csv-to-markdown'
 
-  'space s': 'core:save'
   'space y': 'pane:show-next-item'
   'space l': 'pane:show-previous-item'
   'space /': 'editor:toggle-line-comments-vi'
@@ -142,6 +140,15 @@
   'space t u': 'todotxt:increase-priority'
   'space t e': 'todotxt:decrease-priority'
 
+  # Notational Velocity
+  'space v': 'nvatom:toggle'
+  'space d': 'nvatom:openInterlink'
+
+  # File actions
+  'space f q': 'core:close'
+  'space f w': 'core:save'
+  'space f d': 'tree-view:remove'
+  'space f r': 'tree-view:move'
 
   # Basic Commands
   'n': 'vim-mode:move-left'
