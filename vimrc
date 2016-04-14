@@ -26,49 +26,57 @@ endif
 
 " Keyboard Layout
 NeoBundle 'dlip/vim-colemak'
+" Move to the next buffer
+nmap <leader>y :bnext<CR>
+" Move to the previous buffer
+nmap <leader>l :bprevious<CR>
+" Close buffer
+nmap <leader>Q :bp <BAR> bd #<CR>
+" Delete current file and remove buffer
+nmap <leader>DD :call delete(expand('%')) \| bdelete!<CR>
 
 " Search
-"NeoBundle 'Shougo/vimproc', { 'build': {
-  "\   'windows': 'make -f make_mingw32.mak',
-  "\   'cygwin': 'make -f make_cygwin.mak',
-  "\   'mac': 'make -f make_mac.mak',
-  "\   'unix': 'make -f make_unix.mak',
-"\ } }
+NeoBundle 'Shougo/vimproc', { 'build': {
+  \   'windows': 'make -f make_mingw32.mak',
+  \   'cygwin': 'make -f make_cygwin.mak',
+  \   'mac': 'make -f make_mac.mak',
+  \   'unix': 'make -f make_unix.mak',
+\ } }
 
-" NeoBundle 'Shougo/unite.vim' "{{{
-"   let bundle = neobundle#get('unite.vim')
-"   function! bundle.hooks.on_source(bundle)
-"     call unite#filters#matcher_default#use(['matcher_fuzzy'])
-"     call unite#filters#sorter_default#use(['sorter_rank'])
-"     call unite#set_profile('files', 'smartcase', 1)
-"     call unite#custom#source('line,outline','matchers','matcher_fuzzy')
-"   endfunction
+NeoBundle 'Shougo/unite.vim' "{{{
+  let bundle = neobundle#get('unite.vim')
+  function! bundle.hooks.on_source(bundle)
+    call unite#filters#matcher_default#use(['matcher_fuzzy'])
+    call unite#filters#sorter_default#use(['sorter_rank'])
+    call unite#set_profile('files', 'smartcase', 1)
+    call unite#custom#source('line,outline','matchers','matcher_fuzzy')
+  endfunction
 
-"   function! s:unite_settings()
-"     nmap <buffer> Q <plug>(unite_exit)
-"     nmap <buffer> <esc> <plug>(unite_exit)
-"     imap <buffer> <esc> <plug>(unite_exit)
-"   endfunction
-"   autocmd FileType unite call s:unite_settings()
-" 
-"   let g:unite_data_directory=s:get_cache_dir('unite')
-"   let g:unite_enable_start_insert=1
-"   let g:unite_source_history_yank_enable=1
-"   let g:unite_source_rec_max_cache_files=50000
-"   let g:unite_prompt='» '
-"   nmap <space> [unite]
-"   nnoremap [unite] <nop>
-" 
-"   nnoremap <silent> [unite]p :<C-u>Unite -toggle -auto-resize -buffer-name=mixed file_rec/async:! buffer file_mru bookmark<cr><c-u>
-"   nnoremap <silent> [unite]f :<C-u>Unite -toggle -auto-resize -buffer-name=files file_rec/async:!<cr><c-u>
-"   nnoremap <silent> [unite]m :<C-u>Unite -buffer-name=recent file_mru<cr>
-"   nnoremap <silent> [unite]w :<C-u>Unite -buffer-name=gitgrep vcs_grep/git<cr>
-"   nnoremap <silent> [unite]y :<C-u>Unite -buffer-name=yanks history/yank<cr>
-"   nnoremap <silent> [unite]l :<C-u>Unite -auto-resize -buffer-name=line line<cr>
-"   nnoremap <silent> [unite]b :<C-u>Unite -auto-resize -buffer-name=buffers buffer<cr>
-"   nnoremap <silent> [unite]r :<C-u>Unite -no-quit -buffer-name=search grep:.<cr>
-"   nnoremap <silent> [unite]' :<C-u>Unite -auto-resize -buffer-name=mappings mapping<cr>
-"   nnoremap <silent> [unite]s :<C-u>Unite -quick-match buffer<cr>
+  function! s:unite_settings()
+    nmap <buffer> Q <plug>(unite_exit)
+    nmap <buffer> <esc> <plug>(unite_exit)
+    imap <buffer> <esc> <plug>(unite_exit)
+  endfunction
+  autocmd FileType unite call s:unite_settings()
+
+  let g:unite_data_directory=s:get_cache_dir('unite')
+  let g:unite_enable_start_insert=1
+  let g:unite_source_history_yank_enable=1
+  let g:unite_source_rec_max_cache_files=50000
+  let g:unite_prompt='» '
+  nmap <space> [unite]
+  nnoremap [unite] <nop>
+
+  nnoremap <silent> [unite]p :<C-u>Unite -toggle -auto-resize -buffer-name=mixed file_rec/async:! buffer file_mru bookmark<cr><c-u>
+  nnoremap <silent> [unite]f :<C-u>Unite -toggle -auto-resize -buffer-name=files file_rec/async:!<cr><c-u>
+  nnoremap <silent> [unite]m :<C-u>Unite -buffer-name=recent file_mru<cr>
+  nnoremap <silent> [unite]w :<C-u>Unite -buffer-name=gitgrep vcs_grep/git<cr>
+  nnoremap <silent> [unite]y :<C-u>Unite -buffer-name=yanks history/yank<cr>
+  nnoremap <silent> [unite]h :<C-u>Unite -auto-resize -buffer-name=line line<cr>
+  nnoremap <silent> [unite]b :<C-u>Unite -auto-resize -buffer-name=buffers buffer<cr>
+  nnoremap <silent> [unite]r :<C-u>Unite -no-quit -buffer-name=search grep:.<cr>
+  nnoremap <silent> [unite]' :<C-u>Unite -auto-resize -buffer-name=mappings mapping<cr>
+  nnoremap <silent> [unite]s :<C-u>Unite -quick-match buffer<cr>
 "}}}
 " NeoBundle 'Shougo/neomru.vim'
 " NeoBundle 'sgur/unite-git_grep'
@@ -80,19 +88,22 @@ NeoBundle 'dlip/vim-colemak'
 
 " Snippets
 " NeoBundle 'honza/vim-snippets'
+NeoBundle 'ervandew/supertab'
 
 " File types
-" NeoBundle 'ecomba/vim-ruby-refactoring'
-" NeoBundle 'ekalinin/Dockerfile.vim'
-" NeoBundle 'kchmck/vim-coffee-script'
-" NeoBundle 'lepture/vim-jinja'
+NeoBundle 'ekalinin/Dockerfile.vim'
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'lepture/vim-jinja'
+NeoBundle 'godlygeek/tabular'
+NeoBundle 'plasticboy/vim-markdown'
+NeoBundle 'elzr/vim-json'
+
 " NeoBundle 'mattn/emmet-vim'
 " NeoBundle 'tpope/vim-rails'
 " NeoBundle 'vim-ruby/vim-ruby'
 " NeoBundle 'Valloric/MatchTagAlways'
 
 " Version control
-"NeoBundle 'dlip/vim-fugitive'
 NeoBundle 'tpope/vim-fugitive' "{{{
   nnoremap <silent> <leader>gg :Gstatus<CR>
   nnoremap <silent> <leader>gd :Gdiff<CR>
@@ -104,7 +115,13 @@ NeoBundle 'tpope/vim-fugitive' "{{{
   nnoremap <silent> <leader>gw :Gwrite<CR>
   nnoremap <silent> <leader>gr :Gremove<CR>
   autocmd BufReadPost fugitive://* set bufhidden=delete
+  let g:fugitive_no_maps=1
 "}}}
+
+NeoBundle 'dlip/gitv' "{{{
+  nnoremap <silent> <leader>gv :Gitv<CR>
+"}}}
+NeoBundle 'airblade/vim-gitgutter'
 
 " Text objects
 NeoBundle 'terryma/vim-multiple-cursors'
@@ -136,15 +153,28 @@ NeoBundleLazy 'scrooloose/nerdtree', {'autoload':{'commands':['NERDTreeToggle','
 "}}}
 
 " Syntax checking
-" NeoBundle 'scrooloose/syntastic'
+NeoBundle 'scrooloose/syntastic' "{
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+"}
 
 " Productivity
-" NeoBundle 'mattn/calendar-vim'
-"NeoBundle 'vimwiki/vimwiki' "{{{
-  "let g:vimwiki_list = [{'path': '~/Dropbox/Wiki/', 'syntax': 'markdown', 'ext': '.md'}]
-  "nnoremap <silent> <leader>C :Calendar<CR>
-  "nnoremap <silent> <Leader>t :VimwikiMakeDiaryNote<CR>
-""}}}
+NeoBundle 'mattn/calendar-vim'
+NeoBundle 'vimwiki/vimwiki' "{{{
+  let g:vimwiki_list = [{'path': '~/wiki/', 'syntax': 'markdown', 'ext': '.md'}]
+  nnoremap <silent> <leader>C :Calendar<CR>
+  nnoremap <silent> <Leader>t :VimwikiMakeDiaryNote<CR>
+"}}}
+
+NeoBundle 'tbabej/taskwiki'
+NeoBundle 'blindFS/vim-taskwarrior'
 " NeoBundle 'jceb/vim-orgmode'
 " NeoBundle 'vim-scripts/workflowish'
 "NeoBundle 'vimoutliner/vimoutliner'
@@ -155,8 +185,24 @@ NeoBundle '907th/vim-auto-save' "{{{
   let g:auto_save = 1  " enable AutoSave on Vim startup
   let g:auto_save_in_insert_mode = 0
 "}}}
+NeoBundle 'jamessan/vim-gnupg'
+NeoBundle 'tpope/vim-eunuch'
 " NeoBundle 'joonty/vdebug'
 " NeoBundle 'maksimr/vim-jsbeautify'
+NeoBundle 'vim-airline/vim-airline' "{{{
+  set laststatus=2
+  " Enable the list of buffers
+  let g:airline#extensions#tabline#enabled = 1
+
+  " Show just the filename
+  "let g:airline#extensions#tabline#fnamemod = ':t'
+
+  let g:airline_theme = 'luna'
+  let g:airline#extensions#hunks#enabled=1
+  let g:airline#extensions#branch#enabled=1
+"}}}
+NeoBundle 'vim-airline/vim-airline-themes'
+
 
 
 " Color schemes
@@ -218,7 +264,7 @@ set incsearch       " Make search act like search in modern browsers
 set magic           " Set magic on, for regular expressions
 set showmatch       " Show matching bracets when text indicator is over them
 set mat=1           " How many tenths of a second to blink
-set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+"set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 set tabstop=2
 set smarttab
 set shiftwidth=2
@@ -251,8 +297,9 @@ nnoremap <leader>i <C-W>l| " Move to split right
 "nnoremap <leader>l gT|     " Move to tab left
 nnoremap <leader>n <C-W>h| " Move to split left
 nnoremap <leader>u <C-W>k| " Move to split above
-nnoremap <silent> <leader>v :e! ~/.vimrc<cr>| " Fast editing of the .vimrc
-"nnoremap <leader>y gt|     " Move to tab right
+nnoremap <silent> <leader>v :e! $MYVIMRC<cr>| " Fast editing of the .vimrc
+nnoremap <silent> <leader>V :so $MYVIMRC<CR>
+"nnoremap <leader>y gt|     " Move to t~/.vimrcab right
 nnoremap <silent> <leader><leader> <C-^>| "Easily switch between this and last buffer
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -269,7 +316,11 @@ set showmode
 "inoremap <Enter> <ESC>`^
 "nnoremap <Enter> i<Enter><ESC>
 "nnoremap <S-Enter> O<ESC>
-:inoremap <S-CR> <Esc>
+" inoremap <S-CR> <Esc>
+nnoremap ,, <Esc>
+vnoremap ,, <Esc>gV
+onoremap ,, <Esc>
+inoremap ,, <Esc>`^
 
 " Comfortable command
 nnoremap ; :
@@ -394,7 +445,7 @@ nnoremap <Leader>8 :<C-U>call TodoSearch()<CR>
 " => Commands
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-autocmd! bufwritepost .vimrc source ~/.vimrc "Autoload vimrc
+"autocmd! bufwritepost .vimrc source ~/.vimrc "Autoload vimrc
 
 "Fix annoying remapping of i
 "au FileType eruby,ruby xunmap <buffer> iM
@@ -403,3 +454,10 @@ autocmd! bufwritepost .vimrc source ~/.vimrc "Autoload vimrc
 "au FileType eruby,ruby ounmap <buffer> im
 
 au FileType qf nnoremap <buffer> <Enter> <Enter>
+
+augroup TaskwarriorMapping
+  autocmd!
+  autocmd FileType taskreport nmap <buffer> z
+        \ <Plug>(taskwarrior_undo)
+  autocmd FileType taskreport nunmap <buffer> u
+augroup END

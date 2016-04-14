@@ -1,3 +1,7 @@
 /vim/bundle/*
+/vim/.cache
+/vim/.netrwhist
+/vim/view
 !/vim/bundle/neobundle.vim
 gitconfig.extra
+/atom/.apmrc
