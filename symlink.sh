@@ -30,3 +30,6 @@ link() {
 for var in *; do
   array_contains IGNORE $var || link $var
 done
+
+#Symlink nvim
+ln -s $(pwd)/nvim ~/.config/nvim
