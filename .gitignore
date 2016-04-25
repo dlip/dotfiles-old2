@@ -5,3 +5,4 @@
 !/vim/bundle/neobundle.vim
 gitconfig.extra
 /atom/.apmrc
+/nvim/plugged

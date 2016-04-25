@@ -25,12 +25,7 @@ set nowrap
 set nobackup
 set nowb
 set noswapfile
-
-" Tab as Esc
-nnoremap <Tab> <Esc>
-vnoremap <Tab> <Esc>gV
-onoremap <Tab> <Esc>
-inoremap <Tab> <Esc>`^
+set mouse=
 
 " Leader
 let mapleader = "\<space>"
@@ -49,12 +44,13 @@ let g:NERDTreeQuitOnOpen=1
 let g:NERDTreeShowLineNumbers=0
 let g:NERDTreeChDirMode=0
 let g:NERDTreeShowBookmarks=0
-let g:NERDTreeDirArrows=0
+let g:NERDTreeDirArrows=1
 let g:NERDTreeIgnore=['\.git','\.hg']
 let g:NERDTreeMapMenu='M'
 let g:NERDTreeMapOpenExpl='' "Normally e
-let g:NERDTreeMapUpdir='' "Normally u
-let g:NERDTreeMapOpenSplit='' "Normally i
+let g:NERDTreeMapUpdir='<BS>' "Normally u
+let g:NERDTreeMapOpenSplit='s' "Normally i
+let g:NERDTreeMapOpenVSplit='v'
 let g:NERDTreeMapQuit='q'
 let g:NERDTreeMapHelp='H'
 let g:NERDTreeMapUpdirKeepOpen='' " U
@@ -71,13 +67,44 @@ let g:auto_save_in_insert_mode = 0
 Plug 'tomtom/tcomment_vim'
 let g:tcommentMapLeaderOp1 = "\<leader>"
 
+" ##Colors
 Plug 'altercation/vim-colors-solarized'
-set background=light
-colorscheme solarized
+Plug 'jonathanfilip/vim-lucius'
+
+Plug 'vimwiki/vimwiki'
+let g:vimwiki_list = [{'path': '~/Dropbox/Draft/', 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_table_mappings=0
+" nnoremap <silent> <leader>C :Calendar<CR>
+" nnoremap <silent> <Leader>t :VimwikiMakeDiaryNote<CR>
 
 call plug#end()
 
+" #Colors
+set background=dark
+colorscheme solarized
+
 " Shortcuts
+
+" Tab as Esc
+nnoremap <silent> <Tab> :nohl<CR>:redraw!<CR><Esc>
+vnoremap <Tab> <Esc>gV
+onoremap <Tab> <Esc>
+inoremap <Tab> <Esc>`^
+
+
+" Comfortable command
+nnoremap ; :
+vnoremap ; :
+
+nnoremap <leader>e <C-W>j| " Move to split below
+nnoremap <leader>i <C-W>l| " Move to split right
+nnoremap <leader>n <C-W>h| " Move to split left
+nnoremap <leader>u <C-W>k| " Move to split above
+nnoremap <silent> <C-l> :noh<cr>:redraw!<cr>
+nnoremap <silent> <leader>/ :NERDTreeToggle<cr>
+nnoremap <silent> <leader><leader> <C-^>| "Easily switch between this and last buffer
+nnoremap <silent> <leader>? :NERDTreeFind<cr>
+nnoremap <silent> <leader>V :so $MYVIMRC<CR>
 nnoremap <silent> <leader>gb :Gblame<CR>
 nnoremap <silent> <leader>gc :Gcommit<CR>
 nnoremap <silent> <leader>gd :Gdiff<CR>
@@ -87,8 +114,4 @@ nnoremap <silent> <leader>go :Glog<CR>
 nnoremap <silent> <leader>gp :Git push<CR>
 nnoremap <silent> <leader>gr :Gremove<CR>
 nnoremap <silent> <leader>gw :Gwrite<CR>
-nnoremap <silent> <leader><leader> <C-^>| "Easily switch between this and last buffer
-nnoremap <silent> <leader>V :so $MYVIMRC<CR>
 nnoremap <silent> <leader>v :e! $MYVIMRC<CR>
-nnoremap <silent> <leader>/ :NERDTreeToggle<cr>
-nnoremap <silent> <leader>? :NERDTreeFind<cr>
