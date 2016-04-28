@@ -60,6 +60,8 @@ Plug 'tpope/vim-fugitive'
 autocmd BufReadPost fugitive://* set bufhidden=delete
 let g:fugitive_no_maps=1
 
+Plug 'tpope/vim-unimpaired'
+
 Plug '907th/vim-auto-save'
 let g:auto_save = 1  " enable AutoSave on Vim startup
 let g:auto_save_in_insert_mode = 0
@@ -68,7 +70,6 @@ Plug 'tomtom/tcomment_vim'
 let g:tcommentMapLeaderOp1 = "\<leader>"
 
 " ##Colors
-Plug 'altercation/vim-colors-solarized'
 Plug 'jonathanfilip/vim-lucius'
 
 Plug 'vimwiki/vimwiki'
@@ -81,9 +82,9 @@ call plug#end()
 
 " #Colors
 set background=dark
-colorscheme solarized
+colorscheme lucius
 
-" Shortcuts
+" #Shortcuts
 
 " Tab as Esc
 nnoremap <silent> <Tab> :nohl<CR>:redraw!<CR><Esc>
@@ -109,6 +110,8 @@ nnoremap <silent> <leader>gb :Gblame<CR>
 nnoremap <silent> <leader>gc :Gcommit<CR>
 nnoremap <silent> <leader>gd :Gdiff<CR>
 nnoremap <silent> <leader>gg :Gstatus<CR>
+nnoremap <silent> <leader>gss :Git stash<CR>
+nnoremap <silent> <leader>gsp :Git stash pop<CR>
 nnoremap <silent> <leader>gl :Git pull --rebase<cr>
 nnoremap <silent> <leader>go :Glog<CR>
 nnoremap <silent> <leader>gp :Git push<CR>
