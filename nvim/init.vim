@@ -67,16 +67,24 @@ Plug '907th/vim-auto-save'
 let g:auto_save = 1  " enable AutoSave on Vim startup
 let g:auto_save_in_insert_mode = 0
 
-Plug 'tomtom/tcomment_vim'
+Plug 'scrooloose/nerdcommenter'| ", { 'on': 'NERDCommenterToggle' }
 
-Plug 'rhysd/nyaovim-markdown-preview'
+Plug 'rhysd/nyaovim-markdown-preview'| ", { 'for': 'markdown' }
 let g:markdown_preview_auto = 1
 let g:markdown_preview_eager = 1
+
+Plug 'rking/ag.vim'
+let g:ag_apply_qmappings=0
+
+Plug 'taiansu/nerdtree-ag'
+
+Plug 'benekastah/neomake'
+let g:neomake_verbose = 3
 
 " ##Colors
 Plug 'jonathanfilip/vim-lucius'
 
-Plug 'vimwiki/vimwiki'
+Plug 'vimwiki/vimwiki'| ", { 'on': ['VimwikiIndex', 'VimwikiMakeDiaryNote', 'VimwikiDiaryIndex', 'CalendarH'] }
 let g:vimwiki_list = [{'path': '~/Dropbox/Draft/', 'syntax': 'markdown', 'ext': '.md'},
                       \{'path': '~/Dropbox/Draft.old/', 'syntax': 'markdown', 'ext': '.md', 'index': '0-personal'},
                       \{'path': '~/Dropbox/Draft.old/', 'syntax': 'markdown', 'ext': '.md', 'index': '1-work'}]
@@ -84,9 +92,7 @@ let g:vimwiki_list = [{'path': '~/Dropbox/Draft/', 'syntax': 'markdown', 'ext': 
 let g:vimwiki_table_mappings=0
 let g:vimwiki_markdown_link_include_extension=1
 
-Plug 'mattn/calendar-vim'
-" nnoremap <silent> <leader>C :Calendar<CR>
-" nnoremap <silent> <Leader>t :VimwikiMakeDiaryNote<CR>
+Plug 'mattn/calendar-vim'| ", { 'on': 'CalendarH' }
 
 call plug#end()
 
@@ -107,6 +113,7 @@ inoremap <Tab> <Esc>`^
 nnoremap ; :
 vnoremap ; :
 
+map <leader>c <plug>NERDCommenterToggle
 nmap <leader>wC <Plug>CalendarH
 nmap <leader>wc <Plug>CalendarV
 nnoremap <leader>e <C-W>j| " Move to split below
@@ -115,7 +122,6 @@ nnoremap <leader>n <C-W>h| " Move to split left
 nnoremap <leader>u <C-W>k| " Move to split above
 nnoremap <silent> <C-l> :noh<cr>:redraw!<cr>
 nnoremap <silent> <leader>$ :%s/\s\+$//<CR>| "Strip trailing whitespace
-nnoremap <silent> <leader>/ :TComment<cr>
 nnoremap <silent> <leader><leader> <C-^>| "Easily switch between this and last buffer
 nnoremap <silent> <leader>? :NERDTreeFind<cr>
 nnoremap <silent> <leader>V :so $MYVIMRC<CR>
@@ -130,6 +136,5 @@ nnoremap <silent> <leader>gr :Gremove<CR>
 nnoremap <silent> <leader>gsp :Git stash pop<CR>
 nnoremap <silent> <leader>gss :Git stash<CR>
 nnoremap <silent> <leader>gw :Gwrite<CR>
-nnoremap <silent> <leader>t :NERDTreeToggle<cr>
+nnoremap <silent> <leader>/ :NERDTreeToggle<cr>
 nnoremap <silent> <leader>v :e! $MYVIMRC<CR>
-vnoremap <silent> <leader>/ :TComment<cr>
