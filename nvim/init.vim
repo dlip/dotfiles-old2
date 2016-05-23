@@ -25,7 +25,7 @@ set nowrap
 set nobackup
 set nowb
 set noswapfile
-" set mouse=
+set mouse=
 set clipboard=unnamedplus
 
 " Leader
@@ -61,7 +61,7 @@ Plug 'tpope/vim-fugitive'
 autocmd BufReadPost fugitive://* set bufhidden=delete
 let g:fugitive_no_maps=1
 
-Plug 'tpope/vim-unimpaired'
+Plug 'dlip/vim-unimpaired'
 
 Plug '907th/vim-auto-save'
 let g:auto_save = 1  " enable AutoSave on Vim startup
@@ -80,6 +80,8 @@ Plug 'taiansu/nerdtree-ag'
 
 Plug 'benekastah/neomake'
 let g:neomake_verbose = 3
+
+Plug 'sheerun/vim-polyglot'
 
 " ##Colors
 Plug 'jonathanfilip/vim-lucius'
@@ -112,6 +114,7 @@ inoremap <Tab> <Esc>`^
 " Comfortable command
 nnoremap ; :
 vnoremap ; :
+au VimEnter * map <Tab> <Esc>
 
 map <leader>c <plug>NERDCommenterToggle
 nmap <leader>wC <Plug>CalendarH
