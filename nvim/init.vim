@@ -1,5 +1,5 @@
 " #Core Options
-syntax on           " Enable syntax highlighting
+syntax enable       " Enable syntax highlighting
 set so=7            " Set 7 lines to the curors - when moving vertical..
 set history=300     " Sets how many lines of history VIM has to remember
 set autoread        " Set to auto read when a file is changed from the outside
@@ -87,6 +87,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'jonathanfilip/vim-lucius'
 Plug 'altercation/vim-colors-solarized'
 let g:solarized_termcolors=256
+let g:solarized_termtrans = 1
 
 Plug 'vimwiki/vimwiki'| ", { 'on': ['VimwikiIndex', 'VimwikiMakeDiaryNote', 'VimwikiDiaryIndex', 'CalendarH'] }
 let g:vimwiki_list = [{'path': '~/Dropbox/Draft/', 'syntax': 'markdown', 'ext': '.md'},
