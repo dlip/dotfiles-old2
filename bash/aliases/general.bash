@@ -43,3 +43,6 @@ alias rl='tail -f log/*.log'
 
 # Speedread
 function sr() { cat "$@" | speedread -w 500;}
+
+# Fix vim colors
+alias tmux="TERM=screen-256color-bce tmux"

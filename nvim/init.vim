@@ -1,5 +1,5 @@
 " #Core Options
-syntax enable           " Enable syntax highlighting
+syntax on           " Enable syntax highlighting
 set so=7            " Set 7 lines to the curors - when moving vertical..
 set history=300     " Sets how many lines of history VIM has to remember
 set autoread        " Set to auto read when a file is changed from the outside
@@ -85,6 +85,8 @@ Plug 'sheerun/vim-polyglot'
 
 " ##Colors
 Plug 'jonathanfilip/vim-lucius'
+Plug 'altercation/vim-colors-solarized'
+let g:solarized_termcolors=256
 
 Plug 'vimwiki/vimwiki'| ", { 'on': ['VimwikiIndex', 'VimwikiMakeDiaryNote', 'VimwikiDiaryIndex', 'CalendarH'] }
 let g:vimwiki_list = [{'path': '~/Dropbox/Draft/', 'syntax': 'markdown', 'ext': '.md'},
@@ -96,25 +98,73 @@ let g:vimwiki_markdown_link_include_extension=1
 
 Plug 'mattn/calendar-vim'| ", { 'on': 'CalendarH' }
 
+Plug 'dbeniamine/todo.txt-vim'
+let g:Todo_txt_do_not_map=1
+" Sort todo by (first) context
+noremap <silent><localleader>sc :call todo#HierarchicalSort('@', '', 1)<CR>
+noremap <silent><localleader>scp :call todo#HierarchicalSort('@', '+', 1)<CR>
+" Sort todo by (first) project
+noremap <silent><localleader>sp :call todo#HierarchicalSort('+', '',1)<CR>
+noremap <silent><localleader>spc :call todo#HierarchicalSort('+', '@',1)<CR>
+" Sort tasks {{{2
+nnoremap <script> <silent> <buffer> <LocalLeader>s :call todo#Sort()<CR>
+nnoremap <script> <silent> <buffer> <LocalLeader>s@ :sort /.\{-}\ze@/ <CR>
+nnoremap <script> <silent> <buffer> <LocalLeader>s+ :sort /.\{-}\ze+/ <CR>
+" Priorities {{{2
+noremap <script> <silent> <buffer> <LocalLeader>u :call todo#PrioritizeIncrease()<CR>
+noremap <script> <silent> <buffer> <LocalLeader>e :call todo#PrioritizeDecrease()<CR>
+noremap <script> <silent> <buffer> <LocalLeader>a :call todo#PrioritizeAdd('A')<CR>
+noremap <script> <silent> <buffer> <LocalLeader>b :call todo#PrioritizeAdd('B')<CR>
+noremap <script> <silent> <buffer> <LocalLeader>c :call todo#PrioritizeAdd('C')<CR>
+" Insert date {{{2
+inoremap <script> <silent> <buffer> d<Tab> <C-R>=strftime("%Y-%m-%d")<CR>
+inoremap <script> <silent> <buffer> u: due:<C-R>=strftime("%Y-%m-%d")<CR>
+inoremap <script> <silent> <buffer> DUE: DUE:<C-R>=strftime("%Y-%m-%d")<CR>
+noremap <script> <silent> <buffer> <localleader>d :call todo#PrependDate()<CR>
+" Mark done {{{2
+noremap <script> <silent> <buffer> <localleader>x :call todo#ToggleMarkAsDone('')<CR>
+" Mark done {{{2
+noremap <script> <silent> <buffer> <localleader>C :call todo#ToggleMarkAsDone('Cancelled')<CR>
+" Mark all done {{{2
+noremap <script> <silent> <buffer> <localleader>X :call todo#MarkAllAsDone()<CR>
+" Remove completed {{{2
+nnoremap <script> <silent> <buffer> <localleader>D :call todo#RemoveCompleted()<CR>
+" Sort by due: date {{{1
+nnoremap <script> <silent> <buffer> <localleader>sd :call todo#SortDue()<CR>
+
+Plug 'ervandew/supertab'
+
+Plug 'honza/vim-snippets'
+
 call plug#end()
 
 " #Colors
 set background=dark
-colorscheme lucius
+colorscheme solarized
 
 " #Shortcuts
 
 " Tab as Esc
-nnoremap <silent> <Tab> :nohl<CR>:redraw!<CR><Esc>
-vnoremap <Tab> <Esc>gV
-onoremap <Tab> <Esc>
-inoremap <Tab> <Esc>`^
+"nnoremap <silent> <Tab> :nohl<CR>:redraw!<CR><Esc>
+"vnoremap <Tab> <Esc>gV
+"onoremap <Tab> <Esc>
+"inoremap <Tab> <Esc>`^
 
+nnoremap <silent> <Tab> :nohl<CR>:redraw!<CR><Esc>
+" Backtick as Esc
+vnoremap ` <Esc>gV
+onoremap ` <Esc>
+inoremap ` <Esc>`^
+nnoremap ` gi`
+
+" qp as escape
+vnoremap qp <Esc>gV
+onoremap qp <Esc>
+inoremap qp <Esc>`^
 
 " Comfortable command
 nnoremap ; :
 vnoremap ; :
-au VimEnter * map <Tab> <Esc>
 
 map <leader>c <plug>NERDCommenterToggle
 nmap <leader>wC <Plug>CalendarH
