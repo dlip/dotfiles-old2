@@ -2,7 +2,9 @@
 
 # Utility
 alias reload='source ~/.bashrc'
-alias v="vim"
+alias v="nvim"
+alias vi="nvim"
+alias vim="nvim"
 
 # Common -- Some are from Damian Conway
 alias a='ls -A' # -A all except literal . ..
@@ -46,3 +48,5 @@ function sr() { cat "$@" | speedread -w 500;}
 
 # Fix vim colors
 alias tmux="TERM=screen-256color-bce tmux"
+
+
